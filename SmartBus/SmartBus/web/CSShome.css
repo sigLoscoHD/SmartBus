@@ -10,13 +10,16 @@ and open the template in the editor.
 
 
 #registrazione{
+    height:100%;
     margin-top:5%;
     width:25%;
     float:right;
+    margin-right: 1%;
     
 }
 
 
 body{
     background-image: url(pullman.jpg);
+    background-size: cover;
 }
