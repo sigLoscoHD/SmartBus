@@ -17,9 +17,14 @@ and open the template in the editor.
     margin-right: 1%;
     
 }
+#err-pass{
+    position:absolute;
+    top: 1%;
+    right:1%;
+}
 
 body{
-    background-image: url(pullman.jpg);
+   background-image: url(../images/pullman.jpg);
     background-size: cover;
 }
 
