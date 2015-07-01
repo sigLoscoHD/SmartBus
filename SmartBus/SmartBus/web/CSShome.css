@@ -23,3 +23,6 @@ body{
     background-image: url(pullman.jpg);
     background-size: cover;
 }
+#navbar-main{
+    margin-left:85%;
+}
