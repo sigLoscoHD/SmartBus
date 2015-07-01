@@ -26,3 +26,8 @@ body{
 #navbar-main{
     margin-left:85%;
 }
+
+#homebar{
+    background-image: none;
+    background-color: #ffcc66;
+}
