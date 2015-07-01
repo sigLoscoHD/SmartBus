@@ -18,11 +18,11 @@ and open the template in the editor.
     
 }
 
-
 body{
     background-image: url(pullman.jpg);
     background-size: cover;
 }
+
 #navbar-main{
     margin-left:85%;
 }
@@ -30,4 +30,19 @@ body{
 #homebar{
     background-image: none;
     background-color: #ffcc66;
+    margin-left:80%;
+}
+
+a{
+   font-size: 22px;
+}
+
+#navbar{
+    background-image: none;
+    background-color: #01154b;
+}
+
+#signup{
+    position: relative;
+    left:1%;
 }
