@@ -22,12 +22,30 @@ and open the template in the editor.
     top: 1%;
     right:1%;
 }
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity 0.15s linear;
+  -moz-transition: opacity 0.15s linear;
+  -o-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+}
 
 body{
    background-image: url(../images/pullman.jpg);
     background-size: cover;
+    
 }
-
+.jumbotron{
+    opacity: 0.7;
+    text-align: center;
+    width:30%;
+    margin:0 auto;
+    margin-top: 10%;
+    border-radius: 40px;
+}
+#slogan{
+    font-size: 30px;
+}
 #navbar-main{
     margin-left:85%;
 }
@@ -37,7 +55,10 @@ body{
     background-color: #ffcc66;
     margin-left:80%;
 }
-
+#login-container{
+    position:relative;
+    left:70%;
+}
 a{
    font-size: 22px;
 }
