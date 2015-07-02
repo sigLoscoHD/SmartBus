@@ -67,7 +67,9 @@ a{
     background-image: none;
     background-color: #01154b;
 }
-
+#brand{
+    color:#e7aa08;
+}
 #signup{
     position: relative;
     left:1%;
