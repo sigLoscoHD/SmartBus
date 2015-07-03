@@ -23,11 +23,8 @@ and open the template in the editor.
     margin-left:80%;
 }
 
-<<<<<<< HEAD
-#login-container , #logout-container{
-=======
+
 #login-container,#logout-container{
->>>>>>> 86301b681547e0fc111fa2ab72b09ad9a3c4fbee
     position:relative;
     left:70%;
 }
@@ -45,11 +42,8 @@ a{
     color:#e7aa08;
 }
 
-<<<<<<< HEAD
-#signup , #logout{
-=======
+
 #signup,#logout{
->>>>>>> 86301b681547e0fc111fa2ab72b09ad9a3c4fbee
     position: relative;
     left:1%;
 }
