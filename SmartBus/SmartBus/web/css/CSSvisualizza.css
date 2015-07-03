@@ -1,0 +1,45 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 3-lug-2015, 11.46.35
+    Author     : B I G
+*/
+body{
+   background-image: url(../images/pullman.jpg);
+   background-size: cover;   
+}
+
+label{
+    color: #01154b;
+}
+
+#form-container{
+    background-color: white;
+    opacity: 0.8;
+    margin-top: 50px;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.form-group{
+    display: inline-block;
+    width: 20%;
+}
+
+.panel-default{  
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.panel-default>.panel-heading{
+    background-image: none;
+    background-color: #01154b;
+    color: #e7aa08;
+    font-size: 25px;
+    font-weight: bold;
+}
