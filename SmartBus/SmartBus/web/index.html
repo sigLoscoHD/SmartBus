@@ -24,93 +24,85 @@ and open the template in the editor.
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         
     </head>
-    <body>
-        
+    <body>       
         <div class="jumbotron">
             <h1>SmartBus</h1>
             <p id="slogan">Accedi, acquista, viaggia!</p>
             <p><a id="learn-more" class="btn btn-warning btn-lg" href="#" role="button" data-toggle="modal" data-target="#login-modal">Learn more</a></p>
         </div>
-        
-        
-        
-        
-<div id="navbar" class="navbar navbar-default navbar-fixed-top"  >
-    <div class="container">
-        <div class="navbar-header">
-            <a id="brand" class="navbar-brand" href="index.html">SmartBus</a>
-        </div>
-        <div id="login-container">
-        <ul class="nav pull-left">
-            <li class="divider-vertical"></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" href="#" data-toggle="dropdown" style="color: #e7aa08;">
-                    Login<strong class="caret"></strong>
-                </a>
-
-                <div id="login" class="dropdown-menu dropdown" style="padding: 15px; padding-bottom: 10px;">
-                    <form action="[YOUR ACTION]" method="post" accept-charset="UTF-8">
-                        <input id="user_username" style="margin-bottom: 15px;" type="text" name="user" size="30" />
-                        <input id="user_password" style="margin-bottom: 15px;" type="password" name="pass" size="30" />
-                        <input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="remember_me" />
-                        <label class="string optional" for="user_remember_me"> Remember me</label>
-                        <input class="btn btn-warning" style=" clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
-                    </form>
+               
+        <div id="navbar" class="navbar navbar-default navbar-fixed-top"  >
+            <div class="container">
+                <div class="navbar-header">
+                    <a id="brand" class="navbar-brand" href="index.html">SmartBus</a>
                 </div>
-            </li>
-        </ul>
-        <button id="signup" type="button" class="btn btn-warning  navbar-btn" data-toggle="modal" data-target="#myModal">Sign up</button>    
-        </div>
-    </div>
-</div>
-        
+                <div id="login-container">
+                    <ul class="nav pull-left">
+                        <li class="divider-vertical"></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" style="color: #e7aa08;">
+                                Login<strong class="caret"></strong>
+                            </a>
+                            <div id="login" class="dropdown-menu dropdown" style="padding: 15px; padding-bottom: 10px;">
+                                <form action="[YOUR ACTION]" method="post" accept-charset="UTF-8">
+                                    <input id="user_username" style="margin-bottom: 15px;" type="text" name="user" size="30" />
+                                    <input id="user_password" style="margin-bottom: 15px;" type="password" name="pass" size="30" />
+                                    <input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="remember_me" />
+                                    <label class="string optional" for="user_remember_me"> Remember me</label>
+                                    <input class="btn btn-warning" style=" clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                    <button id="signup" type="button" class="btn btn-warning  navbar-btn" data-toggle="modal" data-target="#myModal">Sign up</button>    
+                </div>
+            </div>
+        </div>       
 <!-- SignUp Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Registrati</h4>
-      </div>
-      <div class="modal-body">
-          
-          <form action="" method="POST" role="form">
-                <div class="form-group">
-                    <label for="email">Nome:</label>
-                    <input type="text" class="form-control"  id="nome">
-                </div>
-                <div class="form-group">
-                    <label for="email">Cognome:</label>
-                    <input type="text" class="form-control" id="cognome"/>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email address:</label>
-                    <input type="email" class="form-control" id="email"/>
-                </div>
-                <div class="form-group">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Registrati</h4>
+            </div>
+            <div class="modal-body">         
+                <form action="" method="POST" role="form">
+                    <div class="form-group">
+                        <label for="email">Nome:</label>
+                        <input type="text" class="form-control"  id="nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Cognome:</label>
+                        <input type="text" class="form-control" id="cognome"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" class="form-control" id="email"/>
+                    </div>
+                    <div class="form-group">
                         <label for="sesso">Sesso:</label><br/>
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="M" checked/> M
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="F"/> F
-                    </label>
-                </div>
-                <div class="form-group">
-                  <label for="pwd">Password:</label>
-                  <input type="password" class="form-control" id="pass"/>
-                </div>
-                <div class="form-group">
-                  <label for="pwd">Ripeti password:</label>
-                  <input type="password" class="form-control" id="npass"/>
-                  <br>
-                  <button type="button" class="btn btn-warning" onclick="return controllo();">Registrati</button>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="M" checked/> M
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="F"/> F
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pass"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Ripeti password:</label>
+                        <input type="password" class="form-control" id="npass"/>
+                        <br>
+                        <button type="button" class="btn btn-warning" onclick="return controllo();">Registrati</button>
+                    </div>
+                </form>
+            </div>
         </div>
-      </form>
-
     </div>
-  </div>
-</div>
 </div>
 
 <!--info Modal -->
@@ -119,7 +111,7 @@ and open the template in the editor.
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                     <h4 class="modal-title" id="myModalLabel">Info</h4>
+                <h4 class="modal-title" id="myModalLabel">Info</h4>
             </div>
             <div class="modal-body">
                 <p><strong>SmartBus</strong> è un’applicazione per acquisto di biglietti per il trasporto pubblico, a cui si può accedere mediante l’utilizzo di uno smartphone oppure via web con l’utilizzo di un qualsiasi terminale.</p>
