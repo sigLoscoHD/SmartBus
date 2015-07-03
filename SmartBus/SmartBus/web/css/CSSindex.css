@@ -4,48 +4,51 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 1-lug-2015, 14.26.58
-    Author     : Matteo
+    Created on : 3-lug-2015, 10.53.17
+    Author     : B I G
 */
-
-
-#registrazione{
-    height:100%;
-    margin-top:5%;
-    width:25%;
-    float:right;
-    margin-right: 1%;
-    
-}
-#err-pass{
-    position:absolute;
-    top: 1%;
-    right:1%;
-}
-.fade {
-  opacity: 0;
-  -webkit-transition: opacity 0.15s linear;
-  -moz-transition: opacity 0.15s linear;
-  -o-transition: opacity 0.15s linear;
-  transition: opacity 0.15s linear;
-}
 
 body{
    background-image: url(../images/pullman.jpg);
-    background-size: cover;
-    
-}
-.jumbotron{
-    opacity: 0.8;
-    text-align: center;
-    width:30%;
-    margin:0 auto;
-    margin-top: 10%;
-    border-radius: 40px;
+   background-size: cover;   
 }
 
+.jumbotron{
+    opacity: 0.9;
+    display: inline-block;
+    width: 40%;
+    margin-top: 100px;
+    border-radius: 30px;
+    padding: 40px;
+    border: 5px solid #01154b;
+    height: 350px;
+}
+
+<<<<<<< HEAD:SmartBus/SmartBus/web/css/CSSindex.css
 
 
 #slogan{
     font-size: 30px;
 }
+=======
+#acquista{
+    float: left;
+    margin-left: 50px;
+}
+
+#visualizza{
+    float: right;
+    margin-right: 50px;
+}
+
+#benvenuto{
+    margin-top: 100px;
+    text-align: center;
+}
+
+#benvenuto>span{
+    font-size: 40px;
+    color: #01154b;
+}
+
+>>>>>>> 86301b681547e0fc111fa2ab72b09ad9a3c4fbee:SmartBus/SmartBus/web/css/CSShome.css
