@@ -49,31 +49,3 @@ body{
 #slogan{
     font-size: 30px;
 }
-#navbar-main{
-    margin-left:85%;
-}
-
-#homebar{
-    background-image: none;
-    background-color: #ffcc66;
-    margin-left:80%;
-}
-#login-container{
-    position:relative;
-    left:70%;
-}
-a{
-   font-size: 22px;
-}
-
-#navbar{
-    background-image: none;
-    background-color: #01154b;
-}
-#brand{
-    color:#e7aa08;
-}
-#signup{
-    position: relative;
-    left:1%;
-}
