@@ -13,14 +13,15 @@ body{
 }
 #tab-container{
    position:absolute;
-   top:10%;
+   top:16%;
    left:33%;
-   width:33.7%;
+   width:35%;
     background-color: white;
-    border-radius: 5px;
-   padding-bottom: 5px;
-   padding-left:3px;
-   padding-top:3px;
+    border-radius: 10px;
+   padding-bottom: 7px;
+   padding-left:7px;
+   padding-top:5px;
+    border: 5px solid #01154b;
 }
 #menu{
     
