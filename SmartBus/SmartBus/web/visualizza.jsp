@@ -1,14 +1,16 @@
+<%-- 
+    Document   : visualizza
+    Created on : 6-lug-2015, 22.38.47
+    Author     : Matteo
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="database.Utente"%>
+<%@page import="database.DBQuery"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>Tratte e Orari</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">       
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!-- Optional theme -->
@@ -22,15 +24,22 @@ and open the template in the editor.
         <!--page CSS -->
         <link href="css/CSSnavbar.css" rel="stylesheet" type="text/css"/>
         <link href="css/CSSvisualizza.css" rel="stylesheet" type="text/css"/>
+        <title>Tratte e Orari</title>
     </head>
     <body>
+       <%
+        Utente sesuser=null;
+        sesuser=(Utente) session.getAttribute("loggato");
+
+        ServletContext context = pageContext.getServletContext();
+        %>
         <div id="navbar" class="navbar navbar-default navbar-fixed-top"  >
             <div class="container">
                 <div class="navbar-header">
-                    <a id="brand" class="navbar-brand" href="Home.html">SmartBus</a>
+                    <a id="brand" class="navbar-brand" href="Home.jsp">SmartBus</a>
                 </div>
                 <div id="logout-container">
-                    <button id="logout" type="button" class="btn btn-warning navbar-btn">Logout</button>    
+                  <a href="logout.jsp"><button id="logout" type="button" class="btn btn-warning navbar-btn">Logout</button></a>     
                 </div>
             </div>
         </div>   
@@ -93,5 +102,6 @@ and open the template in the editor.
                 </tr>
             </table>
         </div>
+    
     </body>
 </html>

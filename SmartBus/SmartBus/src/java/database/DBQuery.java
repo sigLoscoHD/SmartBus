@@ -103,7 +103,7 @@ public class DBQuery {
              // End DB_Login_ByCookie.
 	}
 	
-	public static int registrazione(String nome, String cognome, String email, String password, String datanascita, String sesso, ServletContext cont){
+	public static int registrazione(String nome, String cognome, String email, String password, String sesso, ServletContext cont){
 		int i=0;
 		try{
                     Class.forName("com.mysql.jdbc.Driver");
@@ -112,16 +112,15 @@ public class DBQuery {
 
 
                     PreparedStatement pstmt = con.prepareStatement(" INSERT INTO `utente` "
-                                    + " (`Nome`, `Cognome`, `Email`, `Password`, `Datanascita`, `Ruolo`, `Cancellato`, `Sesso`) "
-                                    + " VALUES (?, ?, ?, ?, ?, 'user', 0, ?); ");
+                                    + " (`Ruolo`, `Cancellato`, `Nome`, `Cognome`,`Email`, `Password`, `Sesso`) "
+                                    + " VALUES ('user', 0, ?, ?, ?, ?, ?); ");
 
 
                     pstmt.setString(1, nome);
                     pstmt.setString(2, cognome);
                     pstmt.setString(3, email);
                     pstmt.setString(4, password);
-                    pstmt.setString(5, datanascita);
-                    pstmt.setString(6, sesso);
+                    pstmt.setString(5, sesso);
 
                     i = pstmt.executeUpdate();
 
@@ -136,4 +135,37 @@ public class DBQuery {
 		
 		return i;
 	}// End registrazione
+        
+        public static String check_email(String email,ServletContext cont)
+	{
+		String mail="";
+		
+		try
+		{
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+                    "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+			
+			
+			PreparedStatement pstmt = con.prepareStatement(" SELECT Email " + 
+                                                                        " FROM utente " + 
+                                                                          " WHERE Email=? ");
+			pstmt.setString(1, email);
+			
+			ResultSet rs = pstmt.executeQuery();
+				
+			while (rs.next()){
+				 mail=rs.getString("Email");
+			}
+		
+			con.close();
+			
+		}
+		catch (Exception e) {
+			System.out.println("Errore con DB o Query errata");
+			e.printStackTrace();
+		}
+		return mail;
+		 // check_email
+	}
 }

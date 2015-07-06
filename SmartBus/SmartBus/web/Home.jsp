@@ -36,7 +36,7 @@
         <div id="navbar" class="navbar navbar-default navbar-fixed-top"  >
             <div class="container">
                 <div class="navbar-header">
-                    <a id="brand" class="navbar-brand" href="Home.html">SmartBus</a>
+                    <a id="brand" class="navbar-brand" href="Home.jsp">SmartBus</a>
                 </div>
                 <div id="logout-container">
                     <a href="logout.jsp"><button id="logout" type="button" class="btn btn-warning navbar-btn">Logout</button></a>   
@@ -51,13 +51,13 @@
         <div id="acquista" class="jumbotron">
             <h1>Acquista</h1>
             <p id="slogan">Acquista ora con un click!</p>
-            <p><a id="learn-more" class="btn btn-warning btn-lg" href="acquista.html" role="button">Vai a: Acquista</a></p>
+            <p><a id="learn-more" class="btn btn-warning btn-lg" href="acquista.jsp" role="button">Vai a: Acquista</a></p>
         </div>
         
         <div id="visualizza" class="jumbotron">
             <h1>Tratte e Orari</h1>
             <p id="slogan">Visualizza tratte e orari dei bus che ti interessano!</p>
-            <p><a id="learn-more" class="btn btn-warning btn-lg" href="visualizza.html" role="button">Vai a: Visualizza Tratte Orari</a></p>
+            <p><a id="learn-more" class="btn btn-warning btn-lg" href="visualizza.jsp" role="button">Vai a: Visualizza Tratte Orari</a></p>
         </div>
     </body>
 </html>

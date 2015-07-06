@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 6-lug-2015, 12.09.06
-    Author     : B I G
+    Author     : Matteo
 --%>
 
 <%@page import="database.DBQuery"%>
@@ -28,8 +28,18 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         
     </head>
-    <body>      
+    <body> 
+        <script>
+            $("#ok-reg").addClass("in");
+                    window.setTimeout(function() { $("#ok-reg").alert('close'); }, 2000); 
+            $("#err-reg").addClass("in");
+                    window.setTimeout(function() { $("#err-reg").alert('close'); }, 2000); 
+            $("#err-mail").addClass("in");
+                    window.setTimeout(function() { $("#err-mail").alert('close'); }, 2000);
+        </script>
         <%
+             
+            
             ServletContext context = pageContext.getServletContext();
  
             Cookie[] cookies = request.getCookies();
@@ -49,8 +59,21 @@
             if(sesuser!=null){
 		response.sendRedirect("Home.jsp");
 	}
+            String mex=request.getParameter("mex");
             
-            String mex = request.getParameter("mex");
+            if(mex!=null){
+                if(mex.equals("okreg")){
+                out.print("<div id='ok-reg'class='alert alert-success' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Registrazione avvenuta!</strong> Ora è possibile effettuare il login</div>");
+                
+                }
+                if(mex.equals("errreg")){
+                out.print("<div id='err-reg'class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore: </strong> Registrazione non andata a buon fine</div>");
+                }
+                if(mex.equals("email")){
+                out.print("<div id='err-mail'class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore: </strong> Email già utilizzata da un altro utente!</div>");
+                }
+            }
+           
         %>
         <div class="jumbotron">
             <h1>SmartBus</h1>
@@ -94,37 +117,37 @@
                         <h4 class="modal-title" id="myModalLabel">Registrati</h4>
                     </div>
                     <div class="modal-body">         
-                        <form action="" method="POST" role="form">
+                        <form action="registrazione.jsp" method="POST" role="form">
                             <div class="form-group">
                                 <label for="email">Nome:</label>
-                                <input type="text" class="form-control"  id="nome">
+                                <input type="text" class="form-control"  id="nome" name="nome">
                             </div>
                             <div class="form-group">
                                 <label for="email">Cognome:</label>
-                                <input type="text" class="form-control" id="cognome"/>
+                                <input type="text" class="form-control" id="cognome" name="cognome"/>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address:</label>
-                                <input type="email" class="form-control" id="email"/>
+                                <input type="email" class="form-control" id="email" name="email"/>
                             </div>
                             <div class="form-group">
                                 <label for="sesso">Sesso:</label><br/>
                                 <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="M" checked/> M
+                                    <input type="radio" id="sesso" value="M" checked name="sesso"/> M
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="F"/> F
+                                    <input type="radio"  id="sesso" value="F" name="sesso"/> F
                                 </label>
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" id="pass"/>
+                                <input type="password" class="form-control" id="pass" name="password"/>
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Ripeti password:</label>
-                                <input type="password" class="form-control" id="npass"/>
+                                <input type="password" class="form-control" id="npass" name="npassword"/>
                                 <br>
-                                <button type="button" class="btn btn-warning" onclick="return controllo();">Registrati</button>
+                                <input type="submit" class="btn btn-warning" onclick="return controllo();" value="Registrati">
                             </div>
                         </form>
                     </div>

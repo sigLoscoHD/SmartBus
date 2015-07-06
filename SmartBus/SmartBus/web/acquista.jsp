@@ -1,14 +1,16 @@
+<%-- 
+    Document   : acquista
+    Created on : 6-lug-2015, 22.30.41
+    Author     : Matteo
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="database.DBQuery"%>
+<%@page import="database.Utente"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>Acquista</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="javascript/jquery-1.11.3.min.js" type="text/javascript"></script>
         <script src="javascript/jquery-ui.min.js" type="text/javascript"></script>
         <link href="css/jquery-ui-1.9.2.custom.css" rel="stylesheet" type="text/css"/>
@@ -26,9 +28,17 @@ and open the template in the editor.
         <script src="javascript/JSpdf/jspdf.js" type="text/javascript"></script>
         <script src="javascript/JSpdf/sprintf.js" type="text/javascript"></script>
         <script src="javascript/PDFcreator.js" type="text/javascript"></script>
+        <title>Acquista</title>
     </head>
     <body>
-        <div id="tab-container">
+        <%
+        Utente sesuser=null;
+        sesuser=(Utente) session.getAttribute("loggato");
+
+        ServletContext context = pageContext.getServletContext();
+        %>
+        
+         <div id="tab-container">
             <ul class="nav nav-pills " id="menu">
                 <li role="presentation" class="active"><a href="#acq-bigl" aria-controls="acq-bigl" role="tab" data-toggle="tab">Acquista biglietto</a></li>
                 <li role="presentation"><a href="#acq-abb" aria-controls="acq-abb" role="tab" data-toggle="tab">Acquista abbonamento</a></li>
@@ -37,7 +47,7 @@ and open the template in the editor.
             <!-- Tab panes -->
             <div class="tab-content" id="contenuto">
                 <div role="tabpanel" class="tab-pane active" id="acq-bigl">
-                    <h3>Biglietto </h3>
+                    <h3><%out.print(sesuser.nome +", cosa vuoi acquistare?");%> </h3>
                     <form action="" method="POST" role="form">
                         <div class="form-group">
                             <label for="citta">Città</label>
@@ -78,7 +88,7 @@ and open the template in the editor.
 
               </div>
               <div role="tabpanel" class="tab-pane" id="acq-abb">
-                 <h3>Abbonamento</h3>
+                 <h3><%out.print(sesuser.nome +", cosa vuoi acquistare?");%></h3>
                     <form action="" method="POST" role="form">
                         <div class="form-group">
                             <label for="citta">Città</label>
@@ -125,10 +135,10 @@ and open the template in the editor.
        <div id="navbar" class="navbar navbar-default navbar-fixed-top"  >
             <div class="container">
                 <div class="navbar-header">
-                    <a id="brand" class="navbar-brand" href="Home.html">SmartBus</a>
+                    <a id="brand" class="navbar-brand" href="Home.jsp">SmartBus</a>
                 </div>
                 <div id="logout-container">
-                   <button id="logout" type="button" class="btn btn-warning  navbar-btn" >Logout</button>    
+                    <a href="logout.jsp"> <button id="logout" type="button" class="btn btn-warning  navbar-btn" >Logout</button> </a>   
                 </div>
             </div>
         </div>
