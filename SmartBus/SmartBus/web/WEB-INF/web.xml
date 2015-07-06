@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	 version="3.1">
+    <display-name>LoscoBigBook</display-name>
+    <welcome-file-list>
+      <welcome-file>index.html</welcome-file>
+      <welcome-file>index.htm</welcome-file>
+      <welcome-file>index.jsp</welcome-file>
+      <welcome-file>default.html</welcome-file>
+      <welcome-file>default.htm</welcome-file>
+      <welcome-file>default.jsp</welcome-file>
+      <welcome-file>Home.jsp</welcome-file>
+    </welcome-file-list>
+    <context-param>
+        <param-name>database</param-name>
+        <param-value>loscobigbook</param-value>
+    </context-param> 
+    <context-param>
+        <param-name>ip</param-name>
+        <param-value>127.0.0.1</param-value>
+    </context-param> 
+    <context-param>
+        <param-name>user</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbpassword</param-name>
+        <param-value> </param-value>
+    </context-param>
+</web-app>
