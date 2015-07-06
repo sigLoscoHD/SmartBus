@@ -4,6 +4,8 @@
     Author     : B I G
 --%>
 
+<%@page import="database.DBQuery"%>
+<%@page import="database.Utente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,31 +38,29 @@
 			sesuser=ut;
 			
 			if (ck != null){
-				Cookie c = new Cookie("log", ut.email);
+                            Cookie c = new Cookie("log", ut.email);
 			    c.setMaxAge(24*60*60);
 			    response.addCookie(c); 
 			}
 		}
 		else{
-			response.sendRedirect("Home.jsp?mex=errlog");
+			response.sendRedirect("index.html?mex=errlog");
 		}
 	}	
 	else{
-		loggato = true;
-		ut = sesuser;			
+            loggato = true;
+            ut = sesuser;			
 	}
 	
-	if(loggato==true){
-		
+	if(loggato==true){		
 		String ruolo = sesuser.ruolo;
 		
 		if(ruolo.equals("admin")){
 			response.sendRedirect("AdministratorPage.jsp");
 		}
 		else{
-			response.sendRedirect("Bacheca.jsp");
+			response.sendRedirect("Home.jsp");
 		}
-
 	}
     %>
     </body>
