@@ -1,9 +1,12 @@
+<%-- 
+    Document   : Home
+    Created on : 6-lug-2015, 11.41.57
+    Author     : B I G
+--%>
+
+<%@page import="database.Utente"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>HOME</title>
@@ -23,20 +26,26 @@ and open the template in the editor.
         <link href="css/CSSnavbar.css" rel="stylesheet" type="text/css"/>
         <link href="css/CSShome.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>       
+    <body>    
+        <%
+        Utente sesuser=null;
+        sesuser=(Utente) session.getAttribute("loggato");
+
+        ServletContext context = pageContext.getServletContext();
+        %>
         <div id="navbar" class="navbar navbar-default navbar-fixed-top"  >
             <div class="container">
                 <div class="navbar-header">
                     <a id="brand" class="navbar-brand" href="Home.html">SmartBus</a>
                 </div>
                 <div id="logout-container">
-                    <button id="logout" type="button" class="btn btn-warning navbar-btn">Logout</button>    
+                    <a href="logout.jsp"><button id="logout" type="button" class="btn btn-warning navbar-btn">Logout</button></a>   
                 </div>
             </div>
         </div>
         
         <div id="benvenuto">
-            <span>Benvenuto Simone, da qui puoi accedere alle funzionalità del sito</span>
+            <span>Benvenuto <%out.print(sesuser.nome);%>, da qui puoi accedere alle funzionalità del sito</span>
         </div>
         
         <div id="acquista" class="jumbotron">
