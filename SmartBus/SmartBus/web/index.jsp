@@ -30,12 +30,8 @@
     </head>
     <body> 
         <script>
-            $("#ok-reg").addClass("in");
-                    window.setTimeout(function() { $("#ok-reg").alert('close'); }, 2000); 
-            $("#err-reg").addClass("in");
-                    window.setTimeout(function() { $("#err-reg").alert('close'); }, 2000); 
-            $("#err-mail").addClass("in");
-                    window.setTimeout(function() { $("#err-mail").alert('close'); }, 2000);
+            $(".mess").addClass("in");
+                    window.setTimeout(function() { $(".mess").alert('close'); }, 3000);            
         </script>
         <%
              
@@ -63,14 +59,17 @@
             
             if(mex!=null){
                 if(mex.equals("okreg")){
-                out.print("<div id='ok-reg'class='alert alert-success' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Registrazione avvenuta!</strong> Ora è possibile effettuare il login</div>");
+                out.print("<div id='ok-reg'class='alert alert-success mess' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Registrazione avvenuta!</strong> Ora è possibile effettuare il login</div>");
                 
                 }
                 if(mex.equals("errreg")){
-                out.print("<div id='err-reg'class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore: </strong> Registrazione non andata a buon fine</div>");
+                out.print("<div id='err-reg'class='alert alert-danger mess' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore: </strong> Registrazione non andata a buon fine</div>");
                 }
                 if(mex.equals("email")){
-                out.print("<div id='err-mail'class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore: </strong> Email già utilizzata da un altro utente!</div>");
+                out.print("<div id='err-mail'class='alert alert-danger mess' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore: </strong> Email già utilizzata da un altro utente!</div>");
+                }
+                if(mex.equals("errlog")){
+                out.print("<div id='err-reg'class='alert alert-danger mess' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore: </strong> Email o password inserite non correttamente</div>");
                 }
             }
            
