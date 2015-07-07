@@ -45,3 +45,11 @@ h3 {
     top:10%;
     left:75%;
 }
+#next{
+    position: relative;
+    left:90%;
+}
+#verifica-dati{
+    padding-left:30px;
+    padding-right: 30px;
+}
