@@ -44,7 +44,7 @@
 			}
 		}
 		else{
-			response.sendRedirect("index.html?mex=errlog");
+			response.sendRedirect("index.jsp?mex=errlog");
 		}
 	}	
 	else{

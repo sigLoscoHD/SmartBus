@@ -120,32 +120,32 @@
                         <form action="registrazione.jsp" method="POST" role="form">
                             <div class="form-group">
                                 <label for="email">Nome:</label>
-                                <input type="text" class="form-control"  id="nome" name="nome">
+                                <input type="text" class="form-control" required id="nome" name="nome">
                             </div>
                             <div class="form-group">
                                 <label for="email">Cognome:</label>
-                                <input type="text" class="form-control" id="cognome" name="cognome"/>
+                                <input type="text" class="form-control" required id="cognome" name="cognome"/>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address:</label>
-                                <input type="email" class="form-control" id="email" name="email"/>
+                                <input type="email" class="form-control" required id="email" name="email"/>
                             </div>
                             <div class="form-group">
                                 <label for="sesso">Sesso:</label><br/>
                                 <label class="radio-inline">
-                                    <input type="radio" id="sesso" value="M" checked name="sesso"/> M
+                                    <input type="radio" id="sesso" value="M" required checked name="sesso"/> M
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio"  id="sesso" value="F" name="sesso"/> F
+                                    <input type="radio"  id="sesso" value="F" required name="sesso"/> F
                                 </label>
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" id="pass" name="password"/>
+                                <input type="password" class="form-control" required id="pass" name="password"/>
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Ripeti password:</label>
-                                <input type="password" class="form-control" id="npass" name="npassword"/>
+                                <input type="password" class="form-control" required id="npass" name="npassword"/>
                                 <br>
                                 <input type="submit" class="btn btn-warning" onclick="return controllo();" value="Registrati">
                             </div>
