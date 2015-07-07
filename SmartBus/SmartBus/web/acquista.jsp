@@ -17,6 +17,7 @@
         <link href="css/CSSacquista.css" rel="stylesheet" type="text/css"/>
         <link href="css/CSSnavbar.css" rel="stylesheet" type="text/css"/>
         <script src="javascript/controllo.js" type="text/javascript"></script>
+        <script src="javascript/GestoreAcquisti.js" type="text/javascript"></script>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!-- Optional theme -->
@@ -60,7 +61,7 @@
                         </div>
                         <div class="form-group">
                             <label for="compagnia">Compagnia</label>
-                                <select class="form-control" id="citta">
+                                <select class="form-control" id="compagnia">
                                   <option>---</option>
                                   <option>Start</option>
                                   <option>Start-Bologna</option>
@@ -77,13 +78,13 @@
                         </div>
                         <div class="form-group">
                             <label for="tratta">Tratta</label>
-                                <select class="form-control" id="tipo-tratta">
+                                <select class="form-control" id="tratta">
                                   <option>---</option>
                                   <option>Sbt-Ascoli</option>
                                   <option>Sbt-Martinsicuro</option>
                                 </select>
                         </div>
-                        <button type="button" class="btn btn-warning" onclick="generaBiglietto();">Acquista biglietto</button>
+                        <button type="button" class="btn btn-warning" onclick="controlloBiglietto();">Acquista biglietto</button>
                     </form>
 
               </div>
@@ -101,7 +102,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="compagnia">Compagnia</label>
-                                    <select class="form-control" id="citta">
+                                    <select class="form-control" id="compagnia">
                                       <option>---</option>
                                       <option>Start</option>
                                       <option>Start-Bologna</option>
@@ -118,13 +119,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="tratta">Tratta</label>
-                                    <select class="form-control" id="tipo-tratta">
+                                    <select class="form-control" id="tratta">
                                       <option>---</option>
                                       <option>Sbt-Ascoli</option>
                                       <option>Sbt-Martinsicuro</option>
                                     </select>
                             </div>
-                        <button type="button" class="btn btn-warning" onclick="generaAbbonamento();" >Acquista abbonamento</button>
+                        <button type="button" class="btn btn-warning" onclick="controlloAbbonamento();" >Acquista abbonamento</button>
                     </form>
               </div>
               

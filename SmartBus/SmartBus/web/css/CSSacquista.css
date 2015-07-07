@@ -39,3 +39,9 @@ body{
 h3 {
     text-align: center;
 }
+
+#err-acq{
+    position:absolute;
+    top:10%;
+    left:75%;
+}
