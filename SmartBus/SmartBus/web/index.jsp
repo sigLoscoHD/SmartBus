@@ -59,8 +59,7 @@
             
             if(mex!=null){
                 if(mex.equals("okreg")){
-                out.print("<div id='ok-reg'class='alert alert-success mess' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Registrazione avvenuta!</strong> Ora è possibile effettuare il login</div>");
-                
+                out.print("<div id='ok-reg'class='alert alert-success mess' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Registrazione avvenuta!</strong> Ora è possibile effettuare il login</div>");               
                 }
                 if(mex.equals("errreg")){
                 out.print("<div id='err-reg'class='alert alert-danger mess' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore: </strong> Registrazione non andata a buon fine</div>");
@@ -83,7 +82,7 @@
         <div id="navbar" class="navbar navbar-default navbar-fixed-top"  >
             <div class="container">
                 <div class="navbar-header">
-                    <a id="brand" class="navbar-brand" href="index.html">SmartBus</a>
+                    <a id="brand" class="navbar-brand" href="index.jsp">SmartBus</a>
                 </div>
                 <div id="login-container">
                     <ul class="nav pull-left">
