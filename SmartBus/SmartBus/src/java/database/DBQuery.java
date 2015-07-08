@@ -172,7 +172,7 @@ public class DBQuery {
         
         public static ArrayList <String> getCitta(ServletContext cont)
 	{
-            ArrayList <String> acitta=null;
+            ArrayList <String> acitta=new ArrayList();
 
             try
             {
@@ -187,8 +187,7 @@ public class DBQuery {
                     ResultSet rs = pstmt.executeQuery();
 
                     while (rs.next()){			
-                        String citta=rs.getString("citta");
-                        
+                        String citta=rs.getString("citta");                       
                         acitta.add(citta);
                     }
                     con.close();			
