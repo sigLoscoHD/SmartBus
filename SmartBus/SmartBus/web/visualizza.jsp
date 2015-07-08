@@ -12,22 +12,25 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!--JQuery JQueryUI-->
+        <script src="javascript/jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="javascript/jquery-ui.min.js" type="text/javascript"></script>
+        <link href="css/jquery-ui-1.9.2.custom.css" rel="stylesheet" type="text/css"/>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-         <!--JQuery JQueryUI-->
-        <script src="javascript/jquery-1.11.3.min.js" type="text/javascript"></script>
-        <script src="javascript/jquery-ui.min.js" type="text/javascript"></script>
-        <link href="css/jquery-ui-1.9.2.custom.css" rel="stylesheet" type="text/css"/>
         <!--page CSS -->
         <link href="css/CSSnavbar.css" rel="stylesheet" type="text/css"/>
         <link href="css/CSSvisualizza.css" rel="stylesheet" type="text/css"/>
+        <!--Gestori-->
+        <script src="javascript/GestoreTratte.js" type="text/javascript"></script>
+        
         <title>Tratte e Orari</title>
     </head>
-    <body>
+    <body onload="listener();">
        <%
         Utente sesuser=null;
         sesuser=(Utente) session.getAttribute("loggato");

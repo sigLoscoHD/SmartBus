@@ -199,4 +199,36 @@ public class DBQuery {
             return acitta;
              // End getCitta
 	}
+        
+        public static ArrayList <String> getCompagnia(String citta,ServletContext cont)
+	{
+            ArrayList <String> acompagnia=new ArrayList();
+
+            try
+            {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+                    "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+
+                    PreparedStatement pstmt = con.prepareStatement(" SELECT * " + 
+                                                                   " FROM tratta " + 
+                                                                   " WHERE citta LIKE ? GROUP BY compagnia");
+                    
+                    pstmt.setString(1, citta);
+                    
+                    ResultSet rs = pstmt.executeQuery();
+
+                    while (rs.next()){			
+                        String tratta =rs.getString("compagnia");
+                        acompagnia.add(tratta);
+                    }
+                    con.close();			
+            }
+            catch (Exception e) {
+                    System.out.println("Errore con DB o Query errata");
+                    e.printStackTrace();
+            }
+            return acompagnia;
+             // End getCompagnia
+	}
 }
