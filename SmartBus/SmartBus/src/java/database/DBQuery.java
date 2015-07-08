@@ -200,4 +200,38 @@ public class DBQuery {
             return acitta;
              // End getCitta
 	}
+        
+       public static int UPDATE_utente(String nome, String cognome, String datanascita, String residenza, String luogonascita, int id,ServletContext cont){
+		int i=0;
+		
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+                    "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+			
+			
+			PreparedStatement pstmt = con.prepareStatement(" UPDATE `utente` SET `Nome`= ?, `Cognome`= ?,`Residenza`= ?, `Data_nascita`= ?, `Luogo_nascita`= ? WHERE `ID`= ? LIMIT 1;");
+			
+			
+			pstmt.setString(1, nome);
+			pstmt.setString(2, cognome);
+			pstmt.setString(3, residenza);
+			pstmt.setString(4, datanascita);
+			pstmt.setString(5, luogonascita);
+			pstmt.setInt(6, id);
+			i = pstmt.executeUpdate();
+			
+			con.close();
+	}
+
+		catch (Exception e) 
+		{
+			System.out.println("Errore con DB o Query errata");
+			e.printStackTrace();
+		}
+		
+		return i;
+	}// End UPDATE_utente
+	 
+        
 }
