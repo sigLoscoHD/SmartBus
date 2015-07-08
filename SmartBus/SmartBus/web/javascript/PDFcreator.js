@@ -15,14 +15,16 @@ doc.text(20, 60, 'Acquistato da nome_utente cognome_utente ');
 doc.output('datauri');
 }
 
-function generaAbbonamento(){
+function generaAbbonamento(nome, cognome, datanas, luogonas, residenza){
+    console.log("ciao");
+    console.log(nome);
  var doc = new jsPDF();
-doc.text(20, 20, 'Abbonamento');
-doc.text(20, 30, 'Nome : ');
-doc.text(20, 40, 'Cognome :');
-doc.text(20, 50, 'Data di nascita :');
-doc.text(20, 60, 'Luogo di nascita :');
-doc.text(20, 70, 'Compagnia: ');
+doc.text(20, 20, 'Abbonamento nome_compagnia');
+doc.text(20, 30, 'Nome : ' + nome);
+doc.text(20, 40, 'Cognome :' + cognome);
+doc.text(20, 50, 'Nato a :' + luogonas);
+doc.text(20, 60, ' il :' + datanas);
+doc.text(20, 70, 'Risiede a : ' + residenza);
 doc.text(20, 80, 'Valido per la tratta nome_tratta ');
 
 

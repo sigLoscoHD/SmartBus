@@ -42,3 +42,32 @@ function controlloAbbonamento(){
        
    }
 }
+
+function verificaDati(id){
+    var nome=$("#nome").val();
+    var cognome=$("#cognome").val();
+    var data=$("#data").val();
+    var residenza=$("#residenza").val();
+    var luogonas=$("#luogonas").val();
+    
+    //chiamata ajax alla pagina di modifica.jsp 
+    // la risposta inserirà gli attributi data-toogle e data-target al button
+    // in modo tale da poter aprire il nuovo modal di pagamento
+    // che una volta riempiti tutti i campi genererà un abbonamento in pdf
+     $.ajax({
+            type : "POST",
+            url : "modifica.jsp",
+            data : "nome=" + nome + "&cognome=" + cognome +"&data=" + data + "&residenza=" + residenza +"&luogonas="+ luogonas,
+            dataType:"text",
+            success : function(data) {
+                
+                $("#next").attr("data-toggle","modal");
+                $("#next").attr("data-target","#abbpay-modal");
+            
+
+            }
+    });
+         
+    
+    
+}
