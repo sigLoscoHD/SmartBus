@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.servlet.ServletContext;
 
 /**
@@ -167,5 +168,36 @@ public class DBQuery {
 		}
 		return mail;
 		 // check_email
+	}
+        
+        public static ArrayList <String> getCitta(ServletContext cont)
+	{
+            ArrayList <String> acitta=null;
+
+            try
+            {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+                    "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+
+                    PreparedStatement pstmt = con.prepareStatement(" SELECT * " + 
+                                                                   " FROM tratta " + 
+                                                                   " GROUP BY citta ");
+                    
+                    ResultSet rs = pstmt.executeQuery();
+
+                    while (rs.next()){			
+                        String citta=rs.getString("citta");
+                        
+                        acitta.add(citta);
+                    }
+                    con.close();			
+            }
+            catch (Exception e) {
+                    System.out.println("Errore con DB o Query errata");
+                    e.printStackTrace();
+            }
+            return acitta;
+             // End getCitta
 	}
 }

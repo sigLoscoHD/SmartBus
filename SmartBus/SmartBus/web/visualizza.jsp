@@ -4,6 +4,7 @@
     Author     : Matteo
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="database.Utente"%>
 <%@page import="database.DBQuery"%>
@@ -49,9 +50,14 @@
                     <label for="citta">Città</label>
                         <select class="form-control" id="citta">
                             <option>---</option>
-                            <option>Ascoli Piceno</option>
-                            <option>Bologna</option>
-                            <option>San Benedetto del Tronto</option>
+                            <%
+                            ArrayList <String> citta =DBQuery.getCitta(context);
+                            for(int i=0;i<citta.size();i++){
+                            %>
+                            <option><%out.print(citta.get(i));%></option>
+                            <%
+                            }
+                            %>
                         </select>
                 </div>
                 <div class="form-group">
