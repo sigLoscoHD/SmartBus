@@ -67,7 +67,29 @@ function verificaDati(id){
 
             }
     });
-         
-    
-    
+   
+}
+
+function generaBiglietto(nome, cognome){
+            var doc = new jsPDF();
+           doc.text(20, 20, 'Biglietto');
+           doc.text(20, 30, 'Compagnia: ');
+           doc.text(20, 40, 'Citta: ');
+           doc.text(20, 50, 'Tratta: ');
+           doc.text(20, 60, 'Acquistato da' + nome + ' ' + cognome);
+           // Output as Data URI
+           doc.output('datauri');
+}
+
+function generaAbbonamento(nome, cognome, datanas, luogonas, residenza){
+       var doc = new jsPDF();
+       doc.text(20, 20, 'Abbonamento nome_compagnia');
+       doc.text(20, 30, 'Nome : ' + nome);
+       doc.text(20, 40, 'Cognome :' + cognome);
+       doc.text(20, 50, 'Nato a :' + luogonas);
+       doc.text(20, 60, ' il :' + datanas);
+       doc.text(20, 70, 'Risiede a : ' + residenza);
+       doc.text(20, 80, 'Valido per la tratta nome_tratta ');
+       // Output as Data URI
+       doc.output('datauri');
 }

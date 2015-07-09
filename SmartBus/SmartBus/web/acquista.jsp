@@ -204,7 +204,7 @@
                       </div>
                       <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <button type="button" class="btn btn-warning" onclick="generaBiglietto()">Pay Now</button>
+                            <button type="button" class="btn btn-warning" onclick="generaBiglietto(<%out.print(" ' "+ sesuser.nome +" ' ");%> , <%out.print(" ' "+ sesuser.cognome +" ' ");%>)">Pay Now</button>
                         </div>
                       </div>
                     
