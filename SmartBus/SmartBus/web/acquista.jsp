@@ -18,6 +18,8 @@
         <link href="css/CSSnavbar.css" rel="stylesheet" type="text/css"/>
         <script src="javascript/controllo.js" type="text/javascript"></script>
         <script src="javascript/GestoreAcquisti.js" type="text/javascript"></script>
+        <script src="javascript/jquery-ui.min_1.js" type="text/javascript"></script>
+        <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!-- Optional theme -->
@@ -35,8 +37,7 @@
         <title>Acquista</title>
     </head>
     <body>
-        
-        <%
+         <%
         Utente sesuser=null;
         sesuser=(Utente) session.getAttribute("loggato");
 
@@ -207,7 +208,7 @@
                       </div>
                       <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <button type="button" class="btn btn-warning" onclick="generaBiglietto()">Pay Now</button>
+                            <button type="button" class="btn btn-warning" onclick="generaBiglietto(<%out.print(" ' "+ sesuser.nome +" ' ");%> , <%out.print(" ' "+ sesuser.cognome +" ' ");%>)">Pay Now</button>
                         </div>
                       </div>
                     
@@ -242,10 +243,8 @@
                             
                             <div class="form-group">
                                     <label for="datanascita">Data di nascita:</label>
-                                <input type="date" class="form-control"  required id="data" value="<%if(sesuser.datanascita!=null){out.println(sesuser.datanascita);}else{out.print("");}%>"></input>
-                            
-                               
-                              </div>
+                                 <input type="date" id="datepicker" class="form-control" value="<%if(sesuser.datanascita!=null){out.println(sesuser.datanascita);}else{out.print("");}%>">
+                               </div>
                              <div class="form-group">
                                     <label for="residenza">Residenza:</label>
                                     <input type="text" class="form-control" required id="residenza" name="residenza" value="<%if(sesuser.residenza!=null){out.println(sesuser.residenza);}else{out.print("");}%>">
