@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="database.Compagnia"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="database.DBQuery"%>
@@ -14,13 +15,12 @@
         <%
         ServletContext context = pageContext.getServletContext();
         
-        String citta=request.getParameter("citta");
-        ArrayList <String> compagnia=DBQuery.getCompagnia(citta, context);    
+        int citta=Integer.parseInt(request.getParameter("citta"));
+        ArrayList <Compagnia> compagnia=DBQuery.getCompagnia(citta, context);    
         JSONObject obj = new JSONObject();
         for(int i=0;i<compagnia.size();i++){    
-            obj.put("compagnia"+i,compagnia.get(i));
-            out.flush();
-            
+            obj.put(compagnia.get(i).id,compagnia.get(i).nome);
+            out.flush();     
         }  
         out.print(obj);
         %>

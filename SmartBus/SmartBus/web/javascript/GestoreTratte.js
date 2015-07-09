@@ -6,8 +6,7 @@
 
 function listener(){
     citta=$("#citta");
-    citta.bind('change',function(){  
-        console.log(citta.val());
+    citta.bind('change',function(){ 
         valcitta=citta.val();
         $.ajax({
               type : "POST",
@@ -15,7 +14,7 @@ function listener(){
               data : "citta=" + valcitta,
               dataType: "json",
               success : function(data) {
-                console.log(data);           
+                console.log(JSON.stringify(data));           
               }
          });
 	   

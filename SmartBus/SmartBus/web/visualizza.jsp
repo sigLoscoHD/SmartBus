@@ -4,6 +4,7 @@
     Author     : Matteo
 --%>
 
+<%@page import="database.Citta"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="database.Utente"%>
@@ -54,10 +55,10 @@
                         <select class="form-control" id="citta">
                             <option>---</option>
                             <%
-                            ArrayList <String> citta =DBQuery.getCitta(context);
+                            ArrayList <Citta> citta =DBQuery.getCitta(context);
                             for(int i=0;i<citta.size();i++){
                             %>
-                            <option><%out.print(citta.get(i));%></option>
+                            <option value="<%out.print(citta.get(i).id);%>"><%out.print(citta.get(i).nome);%></option>
                             <%
                             }
                             %>

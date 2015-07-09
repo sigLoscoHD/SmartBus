@@ -149,8 +149,8 @@ public class DBQuery {
 			
 			
 			PreparedStatement pstmt = con.prepareStatement(" SELECT Email " + 
-                                                                        " FROM utente " + 
-                                                                          " WHERE Email=? ");
+                                                                       " FROM utente " + 
+                                                                       " WHERE Email=? ");
 			pstmt.setString(1, email);
 			
 			ResultSet rs = pstmt.executeQuery();
@@ -170,9 +170,9 @@ public class DBQuery {
 		 // check_email
 	}
         
-        public static ArrayList <String> getCitta(ServletContext cont)
+        public static ArrayList <Citta> getCitta(ServletContext cont)
 	{
-            ArrayList <String> acitta=new ArrayList();
+            ArrayList <Citta> acitta=new ArrayList();
 
             try
             {
@@ -181,14 +181,17 @@ public class DBQuery {
                     "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
 
                     PreparedStatement pstmt = con.prepareStatement(" SELECT * " + 
-                                                                   " FROM tratta " + 
-                                                                   " GROUP BY citta ");
+                                                                   " FROM citta ");
                     
                     ResultSet rs = pstmt.executeQuery();
 
                     while (rs.next()){			
-                        String citta=rs.getString("citta");                       
-                        acitta.add(citta);
+                        int id=rs.getInt("ID");
+                        String nome=rs.getString("Nome_citta");
+                        
+                        Citta c = new Citta(id, nome);
+                        
+                        acitta.add(c);
                     }
                     con.close();			
             }
@@ -199,29 +202,37 @@ public class DBQuery {
             return acitta;
              // End getCitta
 	}
-        
-<<<<<<< HEAD
-        public static ArrayList <String> getCompagnia(String citta,ServletContext cont)
-	{
-            ArrayList <String> acompagnia=new ArrayList();
 
+        public static ArrayList <Compagnia> getCompagnia(int citta,ServletContext cont)
+	{
+            ArrayList <Compagnia> acompagnia=new ArrayList();
+            
             try
             {
                     Class.forName("com.mysql.jdbc.Driver");
                     Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
                     "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
 
-                    PreparedStatement pstmt = con.prepareStatement(" SELECT * " + 
-                                                                   " FROM tratta " + 
-                                                                   " WHERE citta LIKE ? GROUP BY compagnia");
+                    PreparedStatement pstmt = con.prepareStatement(" SELECT c.ID, c.Nome_compagnia, f.Citta as citta " + 
+                                                                   " FROM compagnia as c  " + 
+                                                                        " join tratta as t on c.ID=t.Compagnia " +
+                                                                        " join corsa as co on co.Tratta=t.ID " +
+                                                                        " join orario as o on o.Corsa=co.ID " +
+                                                                        " join fermata as f on f.ID=o.Fermata " +
+                                                                   " where citta like ? " +
+                                                                   " group by c.Nome_compagnia,f.citta; ");
                     
-                    pstmt.setString(1, citta);
+                    pstmt.setInt(1, citta);
                     
                     ResultSet rs = pstmt.executeQuery();
 
                     while (rs.next()){			
-                        String tratta =rs.getString("compagnia");
-                        acompagnia.add(tratta);
+                        int id=rs.getInt("ID");
+                        String nome_compagnia=rs.getString("Nome_compagnia");
+                        int id_citta=rs.getInt("citta");
+                        
+                        Compagnia c= new Compagnia(id, nome_compagnia, id_citta);
+                        acompagnia.add(c);
                     }
                     con.close();			
             }
@@ -232,7 +243,7 @@ public class DBQuery {
             return acompagnia;
              // End getCompagnia
 	}
-=======
+
        public static int UPDATE_utente(String nome, String cognome, String datanascita, String residenza, String luogonascita, int id,ServletContext cont){
 		int i=0;
 		
@@ -265,6 +276,4 @@ public class DBQuery {
 		return i;
 	}// End UPDATE_utente
 	 
-        
->>>>>>> 440739dab7f88c260e7c862aba0746a9985a9275
 }
