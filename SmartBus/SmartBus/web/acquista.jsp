@@ -29,6 +29,9 @@
         <script src="javascript/JSpdf/jspdf.js" type="text/javascript"></script>
         <script src="javascript/JSpdf/sprintf.js" type="text/javascript"></script>
         <script src="javascript/PDFcreator.js" type="text/javascript"></script>
+        <!--Gestori-->
+        <script src="javascript/GestoreTratte.js" type="text/javascript"></script>
+        
         <title>Acquista</title>
     </head>
     <body>
