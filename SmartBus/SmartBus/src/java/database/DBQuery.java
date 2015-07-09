@@ -181,13 +181,8 @@ public class DBQuery {
                     "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
 
                     PreparedStatement pstmt = con.prepareStatement(" SELECT * " + 
-<<<<<<< HEAD
                                                                    " FROM citta ");
-=======
-                                                                   " FROM citta " + 
-                                                                   " GROUP BY citta ");
->>>>>>> fdde95c8e97547afce3be863a640d445f47ab488
-                    
+
                     ResultSet rs = pstmt.executeQuery();
 
                     while (rs.next()){			
@@ -207,14 +202,7 @@ public class DBQuery {
             return acitta;
              // End getCitta
 	}
-<<<<<<< HEAD
-=======
-        
 
-        public static ArrayList <String> getCompagnia(String citta,ServletContext cont)
-	{
-            ArrayList <String> acompagnia=new ArrayList();
->>>>>>> fdde95c8e97547afce3be863a640d445f47ab488
 
         public static ArrayList <Compagnia> getCompagnia(int citta,ServletContext cont)
 	{
@@ -226,14 +214,13 @@ public class DBQuery {
                     Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
                     "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
 
-                    PreparedStatement pstmt = con.prepareStatement(" SELECT c.ID, c.Nome_compagnia, f.Citta as citta " + 
+                    PreparedStatement pstmt = con.prepareStatement(" SELECT distinct c.ID, c.Nome_compagnia, f.Citta as citta " + 
                                                                    " FROM compagnia as c  " + 
                                                                         " join tratta as t on c.ID=t.Compagnia " +
                                                                         " join corsa as co on co.Tratta=t.ID " +
                                                                         " join orario as o on o.Corsa=co.ID " +
                                                                         " join fermata as f on f.ID=o.Fermata " +
-                                                                   " where citta like ? " +
-                                                                   " group by c.Nome_compagnia,f.citta; ");
+                                                                   " where citta like ? ");
                     
                     pstmt.setInt(1, citta);
                     
@@ -288,11 +275,5 @@ public class DBQuery {
 		
 		return i;
 	}// End UPDATE_utente
-	 
-<<<<<<< HEAD
 }
-=======
-        
 
-}
->>>>>>> fdde95c8e97547afce3be863a640d445f47ab488
