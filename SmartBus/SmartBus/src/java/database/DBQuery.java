@@ -181,7 +181,7 @@ public class DBQuery {
                     "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
 
                     PreparedStatement pstmt = con.prepareStatement(" SELECT * " + 
-                                                                   " FROM tratta " + 
+                                                                   " FROM citta " + 
                                                                    " GROUP BY citta ");
                     
                     ResultSet rs = pstmt.executeQuery();
@@ -200,7 +200,7 @@ public class DBQuery {
              // End getCitta
 	}
         
-<<<<<<< HEAD
+
         public static ArrayList <String> getCompagnia(String citta,ServletContext cont)
 	{
             ArrayList <String> acompagnia=new ArrayList();
@@ -232,7 +232,7 @@ public class DBQuery {
             return acompagnia;
              // End getCompagnia
 	}
-=======
+
        public static int UPDATE_utente(String nome, String cognome, String datanascita, String residenza, String luogonascita, int id,ServletContext cont){
 		int i=0;
 		
@@ -266,5 +266,5 @@ public class DBQuery {
 	}// End UPDATE_utente
 	 
         
->>>>>>> 440739dab7f88c260e7c862aba0746a9985a9275
+
 }
