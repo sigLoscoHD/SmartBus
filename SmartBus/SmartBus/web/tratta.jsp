@@ -15,8 +15,12 @@ ServletContext context = pageContext.getServletContext();
         
         int compagnia=Integer.parseInt(request.getParameter("compagnia"));
         String tipo=request.getParameter("tipo");
-        ArrayList <Tratta> tratta=DBQuery.getTratta(compagnia, tipo, context);
+        int citta=Integer.parseInt(request.getParameter("citta"));
+        
+        ArrayList <Tratta> tratta=DBQuery.getTratta(compagnia, tipo, citta, context);
+        
         JSONObject obj = new JSONObject();
+           
         for(int i=0;i<tratta.size();i++){    
             obj.put(tratta.get(i).id,tratta.get(i).nomeTratta);
             out.flush();     

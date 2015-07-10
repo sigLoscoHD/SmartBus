@@ -24,36 +24,36 @@ public class DBQuery {
 		
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
                     "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
-			
-			
-			PreparedStatement pstmt = con.prepareStatement(" SELECT * " + 
-														   " FROM utente " + 
-															" WHERE email LIKE ? "
-															+ " AND password LIKE ? AND Cancellato=0;");
-			pstmt.setString(1, user);
-			pstmt.setString(2, pass);
-			
-			ResultSet rs = pstmt.executeQuery();
-				
-			while (rs.next()){
-				int id=rs.getInt("ID");
-				String nome =  rs.getString("Nome");	
-				String cognome =  rs.getString("Cognome");	
-				String email = rs.getString("Email");	
-				String sesso= rs.getString("Sesso");
-				String datanascita= rs.getString("Data_nascita");
-				String ruolo= rs.getString("Ruolo");
-				String luogonascita= rs.getString("Luogo_nascita");
-				String residenza= rs.getString("Residenza");
-				String password=rs.getString("Password");
-				
-				ut= new Utente(id, email, nome, cognome, sesso, datanascita, ruolo, luogonascita, residenza, password);			
-			}
-			
-			con.close();
+
+
+                    PreparedStatement pstmt = con.prepareStatement(" SELECT * " + 
+                                                                                                               " FROM utente " + 
+                                                                                                                    " WHERE email LIKE ? "
+                                                                                                                    + " AND password LIKE ? AND Cancellato=0;");
+                    pstmt.setString(1, user);
+                    pstmt.setString(2, pass);
+
+                    ResultSet rs = pstmt.executeQuery();
+
+                    while (rs.next()){
+                            int id=rs.getInt("ID");
+                            String nome =  rs.getString("Nome");	
+                            String cognome =  rs.getString("Cognome");	
+                            String email = rs.getString("Email");	
+                            String sesso= rs.getString("Sesso");
+                            String datanascita= rs.getString("Data_nascita");
+                            String ruolo= rs.getString("Ruolo");
+                            String luogonascita= rs.getString("Luogo_nascita");
+                            String residenza= rs.getString("Residenza");
+                            String password=rs.getString("Password");
+
+                            ut= new Utente(id, email, nome, cognome, sesso, datanascita, ruolo, luogonascita, residenza, password);			
+                    }
+
+                    con.close();
 			
 		}
 		catch (Exception e) {
@@ -143,23 +143,23 @@ public class DBQuery {
 		
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
                     "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
-			
-			
-			PreparedStatement pstmt = con.prepareStatement(" SELECT Email " + 
-                                                                       " FROM utente " + 
-                                                                       " WHERE Email=? ");
-			pstmt.setString(1, email);
-			
-			ResultSet rs = pstmt.executeQuery();
-				
-			while (rs.next()){
-				 mail=rs.getString("Email");
-			}
-		
-			con.close();
+
+
+                    PreparedStatement pstmt = con.prepareStatement(" SELECT Email " + 
+                                                                   " FROM utente " + 
+                                                                   " WHERE Email=? ");
+                    pstmt.setString(1, email);
+
+                    ResultSet rs = pstmt.executeQuery();
+
+                    while (rs.next()){
+                             mail=rs.getString("Email");
+                    }
+
+                    con.close();
 			
 		}
 		catch (Exception e) {
@@ -176,31 +176,25 @@ public class DBQuery {
 
             try
             {
-                    Class.forName("com.mysql.jdbc.Driver");
-                    Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
-                    "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+                "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
 
-                    PreparedStatement pstmt = con.prepareStatement(" SELECT * " + 
-<<<<<<< HEAD
+                PreparedStatement pstmt = con.prepareStatement(" SELECT * " + 
+                                                               " FROM citta ");
 
-                                                                   " FROM citta ");
 
-                    
-=======
-                                                                   " FROM citta ");
+                ResultSet rs = pstmt.executeQuery();
 
->>>>>>> 234ea30c408dbf0313ff7de2d89f4fc80e67562c
-                    ResultSet rs = pstmt.executeQuery();
+                while (rs.next()){			
+                    int id=rs.getInt("ID");
+                    String nome=rs.getString("Nome_citta");
 
-                    while (rs.next()){			
-                        int id=rs.getInt("ID");
-                        String nome=rs.getString("Nome_citta");
-                        
-                        Citta c = new Citta(id, nome);
-                        
-                        acitta.add(c);
-                    }
-                    con.close();			
+                    Citta c = new Citta(id, nome);
+
+                    acitta.add(c);
+                }
+                con.close();			
             }
             catch (Exception e) {
                     System.out.println("Errore con DB o Query errata");
@@ -217,31 +211,31 @@ public class DBQuery {
             
             try
             {
-                    Class.forName("com.mysql.jdbc.Driver");
-                    Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
-                    "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+                "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
 
-                    PreparedStatement pstmt = con.prepareStatement(" SELECT distinct c.ID, c.Nome_compagnia, f.Citta as citta " + 
-                                                                   " FROM compagnia as c  " + 
-                                                                        " join tratta as t on c.ID=t.Compagnia " +
-                                                                        " join corsa as co on co.Tratta=t.ID " +
-                                                                        " join orario as o on o.Corsa=co.ID " +
-                                                                        " join fermata as f on f.ID=o.Fermata " +
-                                                                   " where citta like ? ");
-                    
-                    pstmt.setInt(1, citta);
-                    
-                    ResultSet rs = pstmt.executeQuery();
+                PreparedStatement pstmt = con.prepareStatement(" SELECT distinct c.ID, c.Nome_compagnia, f.Citta as citta " + 
+                                                               " FROM compagnia as c  " + 
+                                                                    " join tratta as t on c.ID=t.Compagnia " +
+                                                                    " join corsa as co on co.Tratta=t.ID " +
+                                                                    " join orario as o on o.Corsa=co.ID " +
+                                                                    " join fermata as f on f.ID=o.Fermata " +
+                                                               " where citta like ? ");
 
-                    while (rs.next()){			
-                        int id=rs.getInt("ID");
-                        String nome_compagnia=rs.getString("Nome_compagnia");
-                        int id_citta=rs.getInt("citta");
-                        
-                        Compagnia c= new Compagnia(id, nome_compagnia, id_citta);
-                        acompagnia.add(c);
-                    }
-                    con.close();			
+                pstmt.setInt(1, citta);
+
+                ResultSet rs = pstmt.executeQuery();
+
+                while (rs.next()){			
+                    int id=rs.getInt("ID");
+                    String nome_compagnia=rs.getString("Nome_compagnia");
+                    int id_citta=rs.getInt("citta");
+
+                    Compagnia c= new Compagnia(id, nome_compagnia, id_citta);
+                    acompagnia.add(c);
+                }
+                con.close();			
             }
             catch (Exception e) {
                     System.out.println("Errore con DB o Query errata");
@@ -255,23 +249,23 @@ public class DBQuery {
 		int i=0;
 		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
                     "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
-			
-			
-			PreparedStatement pstmt = con.prepareStatement(" UPDATE `utente` SET `Nome`= ?, `Cognome`= ?,`Residenza`= ?, `Data_nascita`= ?, `Luogo_nascita`= ? WHERE `ID`= ? LIMIT 1;");
-			
-			
-			pstmt.setString(1, nome);
-			pstmt.setString(2, cognome);
-			pstmt.setString(3, residenza);
-			pstmt.setString(4, datanascita);
-			pstmt.setString(5, luogonascita);
-			pstmt.setInt(6, id);
-			i = pstmt.executeUpdate();
-			
-			con.close();
+
+
+                    PreparedStatement pstmt = con.prepareStatement(" UPDATE `utente` SET `Nome`= ?, `Cognome`= ?,`Residenza`= ?, `Data_nascita`= ?, `Luogo_nascita`= ? WHERE `ID`= ? LIMIT 1;");
+
+
+                    pstmt.setString(1, nome);
+                    pstmt.setString(2, cognome);
+                    pstmt.setString(3, residenza);
+                    pstmt.setString(4, datanascita);
+                    pstmt.setString(5, luogonascita);
+                    pstmt.setInt(6, id);
+                    i = pstmt.executeUpdate();
+
+                    con.close();
 	}
 
 		catch (Exception e) 
@@ -282,35 +276,41 @@ public class DBQuery {
 		
 		return i;
 	}// End UPDATE_utente
-<<<<<<< HEAD
        
-       public static ArrayList <Tratta> getTratta(int compagnia,String tipo,ServletContext cont)
+       public static ArrayList <Tratta> getTratta(int compagnia,String tipo,int citta,ServletContext cont)
 	{
             ArrayList <Tratta> atratta=new ArrayList();
             
             try
             {
-                    Class.forName("com.mysql.jdbc.Driver");
-                    Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
-                    "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+                "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
 
-                    PreparedStatement pstmt = con.prepareStatement(" select * from tratta where compagnia like ? and tipo like ? ");
-                    
-                    pstmt.setInt(1, compagnia);
-                    pstmt.setString(2, tipo);
-                    
-                    ResultSet rs = pstmt.executeQuery();
+                PreparedStatement pstmt = con.prepareStatement(" SELECT t.id, t.Nome_tratta, t.partenza, t.Arrivo " + 
+                                                               " FROM tratta as t " + 
+                                                                    " join corsa as c on t.ID=c.Tratta " +
+                                                                    " join orario as o on o.Corsa=c.ID " +
+                                                                    " join fermata as f on f.ID=o.Fermata " +
+                                                                    " where citta like ? and compagnia like ? and tipo like ? "+
+                                                                    "group by Nome_tratta");
+                pstmt.setInt(1, citta);
+                pstmt.setInt(2, compagnia);
+                pstmt.setString(3, tipo);
+                
 
-                    while (rs.next()){			
-                        int id=rs.getInt("ID");
-                        String nome_tratta=rs.getString("Nome_tratta");
-                        int partenza=rs.getInt("Partenza");
-                        int arrivo=rs.getInt("Arrivo");
-                        
-                        Tratta t=new Tratta(id, nome_tratta, compagnia, tipo, partenza, arrivo);
-                        atratta.add(t);
-                    }
-                    con.close();			
+                ResultSet rs = pstmt.executeQuery();
+
+                while (rs.next()){			
+                    int id=rs.getInt("ID");
+                    String nome_tratta=rs.getString("Nome_tratta");
+                    int partenza=rs.getInt("Partenza");
+                    int arrivo=rs.getInt("Arrivo");
+
+                    Tratta t=new Tratta(id, nome_tratta, compagnia, tipo, partenza, arrivo);
+                    atratta.add(t);
+                }
+                con.close();			
             }
             catch (Exception e) {
                     System.out.println("Errore con DB o Query errata");
@@ -319,15 +319,6 @@ public class DBQuery {
             return atratta;
              // End getCompagnia
 	}
-=======
-<<<<<<< HEAD
-	 
-
 }
 
         
-=======
->>>>>>> 103b488dc83ae08948a53ee7de98d48a6183a23c
-}
-
->>>>>>> 234ea30c408dbf0313ff7de2d89f4fc80e67562c

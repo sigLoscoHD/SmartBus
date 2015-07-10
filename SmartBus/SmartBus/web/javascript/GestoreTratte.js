@@ -10,10 +10,12 @@ function listenerTipoTratta(){
     tipoTratta.bind('change',function(){ 
         var valTipoTratta=tipoTratta.val();     
         var compagnia = $("#compagnia").val();
+        var citta=$("#citta").val();
+        console.log(citta);
         $.ajax({
               type : "POST",
               url : "tratta.jsp",
-              data : "tipo=" + valTipoTratta + "&compagnia=" + compagnia,
+              data : "tipo=" + valTipoTratta + "&compagnia=" + compagnia+ "&citta=" + citta,
               dataType: "json",
               success : function(data) {
                   var tratte=Object.keys(data);
