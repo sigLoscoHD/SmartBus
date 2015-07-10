@@ -181,8 +181,15 @@ public class DBQuery {
                     "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
 
                     PreparedStatement pstmt = con.prepareStatement(" SELECT * " + 
+<<<<<<< HEAD
+
                                                                    " FROM citta ");
 
+                    
+=======
+                                                                   " FROM citta ");
+
+>>>>>>> 234ea30c408dbf0313ff7de2d89f4fc80e67562c
                     ResultSet rs = pstmt.executeQuery();
 
                     while (rs.next()){			
@@ -275,6 +282,7 @@ public class DBQuery {
 		
 		return i;
 	}// End UPDATE_utente
+<<<<<<< HEAD
        
        public static ArrayList <Tratta> getTratta(int compagnia,String tipo,ServletContext cont)
 	{
@@ -311,5 +319,15 @@ public class DBQuery {
             return atratta;
              // End getCompagnia
 	}
+=======
+<<<<<<< HEAD
+	 
+
 }
 
+        
+=======
+>>>>>>> 103b488dc83ae08948a53ee7de98d48a6183a23c
+}
+
+>>>>>>> 234ea30c408dbf0313ff7de2d89f4fc80e67562c
