@@ -181,10 +181,15 @@ public class DBQuery {
                     "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
 
                     PreparedStatement pstmt = con.prepareStatement(" SELECT * " + 
+<<<<<<< HEAD
 
                                                                    " FROM citta ");
 
                     
+=======
+                                                                   " FROM citta ");
+
+>>>>>>> 234ea30c408dbf0313ff7de2d89f4fc80e67562c
                     ResultSet rs = pstmt.executeQuery();
 
                     while (rs.next()){			
@@ -216,14 +221,13 @@ public class DBQuery {
                     Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
                     "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
 
-                    PreparedStatement pstmt = con.prepareStatement(" SELECT c.ID, c.Nome_compagnia, f.Citta as citta " + 
+                    PreparedStatement pstmt = con.prepareStatement(" SELECT distinct c.ID, c.Nome_compagnia, f.Citta as citta " + 
                                                                    " FROM compagnia as c  " + 
                                                                         " join tratta as t on c.ID=t.Compagnia " +
                                                                         " join corsa as co on co.Tratta=t.ID " +
                                                                         " join orario as o on o.Corsa=co.ID " +
                                                                         " join fermata as f on f.ID=o.Fermata " +
-                                                                   " where citta like ? " +
-                                                                   " group by c.Nome_compagnia,f.citta; ");
+                                                                   " where citta like ? ");
                     
                     pstmt.setInt(1, citta);
                     
@@ -278,8 +282,13 @@ public class DBQuery {
 		
 		return i;
 	}// End UPDATE_utente
+<<<<<<< HEAD
 	 
 
 }
 
         
+=======
+}
+
+>>>>>>> 234ea30c408dbf0313ff7de2d89f4fc80e67562c
