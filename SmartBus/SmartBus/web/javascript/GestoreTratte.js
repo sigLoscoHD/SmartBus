@@ -4,19 +4,25 @@
  * and open the template in the editor.
  */
 
-function listener(){
-    citta=$("#citta");
-    citta.bind('change',function(){ 
-        valcitta=citta.val();
+
+function listenerTipoTratta(){
+    var tipoTratta=$("#tipotratta");
+    tipoTratta.bind('change',function(){ 
+        var valTipoTratta=tipoTratta.val();     
+        var compagnia = $("#compagnia").val();
         $.ajax({
               type : "POST",
-              url : "compagnia.jsp",
-              data : "citta=" + valcitta,
+              url : "tratta.jsp",
+              data : "tipo=" + valTipoTratta + "&compagnia=" + compagnia,
               dataType: "json",
               success : function(data) {
-                console.log(JSON.stringify(data));           
+                  var tratte=Object.keys(data);
+                  $("#tratta").empty();
+                  $("#tratta").append("<option>---</option>");                
+                  for(var i=0;i<tratte.length;i++){
+                      $("#tratta").append("<option value="+tratte[i]+">"+data[tratte[i]]+"</option>");
+                  }
               }
-         });
-	   
+         });	   
     });
 }

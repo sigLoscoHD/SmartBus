@@ -275,5 +275,41 @@ public class DBQuery {
 		
 		return i;
 	}// End UPDATE_utente
+       
+       public static ArrayList <Tratta> getTratta(int compagnia,String tipo,ServletContext cont)
+	{
+            ArrayList <Tratta> atratta=new ArrayList();
+            
+            try
+            {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+                    "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+
+                    PreparedStatement pstmt = con.prepareStatement(" select * from tratta where compagnia like ? and tipo like ? ");
+                    
+                    pstmt.setInt(1, compagnia);
+                    pstmt.setString(2, tipo);
+                    
+                    ResultSet rs = pstmt.executeQuery();
+
+                    while (rs.next()){			
+                        int id=rs.getInt("ID");
+                        String nome_tratta=rs.getString("Nome_tratta");
+                        int partenza=rs.getInt("Partenza");
+                        int arrivo=rs.getInt("Arrivo");
+                        
+                        Tratta t=new Tratta(id, nome_tratta, compagnia, tipo, partenza, arrivo);
+                        atratta.add(t);
+                    }
+                    con.close();			
+            }
+            catch (Exception e) {
+                    System.out.println("Errore con DB o Query errata");
+                    e.printStackTrace();
+            }
+            return atratta;
+             // End getCompagnia
+	}
 }
 

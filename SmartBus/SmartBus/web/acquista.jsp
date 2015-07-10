@@ -4,6 +4,8 @@
     Author     : Matteo
 --%>
 
+<%@page import="database.Citta"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="database.DBQuery"%>
 <%@page import="database.Utente"%>
@@ -33,11 +35,13 @@
         <script src="javascript/PDFcreator.js" type="text/javascript"></script>
         <!--Gestori-->
         <script src="javascript/GestoreTratte.js" type="text/javascript"></script>
-        
+        <script src="javascript/GestoreCitta.js" type="text/javascript"></script>
+        <script src="javascript/GestoreCompagnie.js" type="text/javascript"></script>
+           
         <title>Acquista</title>
     </head>
-    <body>
-         <%
+    <body onload="listenerCitta();">
+        <%
         Utente sesuser=null;
         sesuser=(Utente) session.getAttribute("loggato");
 
@@ -45,10 +49,9 @@
         %>
       
          <div id="tab-container">
-            <ul class="nav nav-pills " id="menu">
-                <li role="presentation" class="active"><a href="#acq-bigl" aria-controls="acq-bigl" role="tab" data-toggle="tab">Acquista biglietto</a></li>
-                <li role="presentation"><a href="#acq-abb" aria-controls="acq-abb" role="tab" data-toggle="tab">Acquista abbonamento</a></li>
-            </ul>
+            
+            <div id="acquista">Acquista</div>
+            
             
             <!-- Tab panes -->
             <div class="tab-content" id="contenuto">
@@ -57,82 +60,42 @@
                     <form action="" method="POST" role="form">
                         <div class="form-group">
                             <label for="citta">Città</label>
-                                <select class="form-control" id="citta">
-                                  <option>---</option>
-                                  <option>Ascoli Piceno</option>
-                                  <option>Bologna</option>
-                                  <option>San Benedetto del Tronto</option>
-                                </select>
+                            <select class="form-control" id="citta">
+                                <option>---</option>
+                                <%
+                                ArrayList <Citta> citta =DBQuery.getCitta(context);
+                                for(int i=0;i<citta.size();i++){
+                                    %>
+                                    <option value="<%out.print(citta.get(i).id);%>"><%out.print(citta.get(i).nome);%></option>
+                                    <%
+                                }
+                                %>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="compagnia">Compagnia</label>
-                                <select class="form-control" id="compagnia">
-                                  <option>---</option>
-                                  <option>Start</option>
-                                  <option>Start-Bologna</option>
-                                  <option>Altra compagnia</option>
-                                </select>
+                            <select class="form-control" id="compagnia">
+                                <option>---</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="tipo">Tipologia tratta</label>
-                                <select class="form-control" id="tipo-tratta">
-                                  <option>---</option>
-                                  <option>Urbana</option>
-                                  <option>Extra-urbana</option>
-                                </select>
+                            <select class="form-control" id="tipotratta">
+                                <option>---</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="tratta">Tratta</label>
-                                <select class="form-control" id="tratta">
-                                  <option>---</option>
-                                  <option>Sbt-Ascoli</option>
-                                  <option>Sbt-Martinsicuro</option>
-                                </select>
+                            <select class="form-control" id="tratta">
+                              <option>---</option>
+                            </select>
                         </div>
                         <button type="button" class="btn btn-warning" onclick="controlloBiglietto();"  id="bigl-button" >Acquista biglietto</button>
+                        <button type="button" class="btn btn-warning" onclick="controlloAbbonamento();" id="abb-button" style="margin-left: 59px;">Acquista abbonamento</button>
                     </form>
 
               </div>
-              <div role="tabpanel" class="tab-pane" id="acq-abb">
-                 <h3><%out.print(sesuser.nome +", cosa vuoi acquistare?");%></h3>
-                    <form action="" method="POST" role="form">
-                        <div class="form-group">
-                            <label for="citta">Città</label>
-                                <select class="form-control" id="citta2">
-                                  <option>---</option>
-                                  <option>Ascoli Piceno</option>
-                                  <option>Bologna</option>
-                                  <option>San Benedetto del Tronto</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="compagnia">Compagnia</label>
-                                    <select class="form-control" id="compagnia2">
-                                      <option>---</option>
-                                      <option>Start</option>
-                                      <option>Start-Bologna</option>
-                                      <option>Altra compagnia</option>
-                                    </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="tipo">Tipologia tratta</label>
-                                    <select class="form-control" id="tipo-tratta2">
-                                      <option>---</option>
-                                      <option>Urbana</option>
-                                      <option>Extra-urbana</option>
-                                    </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="tratta">Tratta</label>
-                                    <select class="form-control" id="tratta2">
-                                      <option>---</option>
-                                      <option>Sbt-Ascoli</option>
-                                      <option>Sbt-Martinsicuro</option>
-                                    </select>
-                            </div>
-                        <button type="button" class="btn btn-warning" onclick="controlloAbbonamento();" id="abb-button" >Acquista abbonamento</button>
-                    </form>
-              </div>
+              
               
             </div>
             

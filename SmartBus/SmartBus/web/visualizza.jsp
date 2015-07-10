@@ -27,11 +27,13 @@
         <link href="css/CSSnavbar.css" rel="stylesheet" type="text/css"/>
         <link href="css/CSSvisualizza.css" rel="stylesheet" type="text/css"/>
         <!--Gestori-->
+        <script src="javascript/GestoreCitta.js" type="text/javascript"></script>
+        <script src="javascript/GestoreCompagnie.js" type="text/javascript"></script>
         <script src="javascript/GestoreTratte.js" type="text/javascript"></script>
-        
+      
         <title>Tratte e Orari</title>
     </head>
-    <body onload="listener();">
+    <body onload="listenerCitta();">
        <%
         Utente sesuser=null;
         sesuser=(Utente) session.getAttribute("loggato");
@@ -57,36 +59,29 @@
                             <%
                             ArrayList <Citta> citta =DBQuery.getCitta(context);
                             for(int i=0;i<citta.size();i++){
-                            %>
-                            <option value="<%out.print(citta.get(i).id);%>"><%out.print(citta.get(i).nome);%></option>
-                            <%
+                                %>
+                                <option value="<%out.print(citta.get(i).id);%>"><%out.print(citta.get(i).nome);%></option>
+                                <%
                             }
                             %>
                         </select>
                 </div>
                 <div class="form-group">
                     <label for="tratta">Compagnia</label>
-                        <select class="form-control" id="citta">
+                        <select class="form-control" id="compagnia">
                             <option>---</option>
-                            <option>Start</option>
-                            <option>Start-Bologna</option>
-                            <option>Altra compagnia</option>
                         </select>
                 </div>
                 <div class="form-group">
                     <label for="tipo">Tipologia Tratta</label>
-                        <select class="form-control" id="citta">
-                            <option>---</option>
-                            <option>Urbana</option>
-                            <option>Extra-Urbana</option>
+                        <select class="form-control" id="tipotratta">
+                            <option>---</option>                         
                         </select>
                 </div>
                 <div class="form-group">
                     <label for="tratta">Tratta</label>
-                        <select class="form-control" id="citta">
-                            <option>---</option>
-                            <option>1c</option>
-                            <option>2a</option>
+                        <select class="form-control" id="tratta">
+                            <option>---</option>                           
                         </select>
                 </div>
                 <button type="button" class="btn btn-warning" >Visualizza Orari</button>
@@ -111,7 +106,6 @@
                     <td>Fermata3</td><td>8.20</td><td>9.20</td><td>10.20</td><td>11.20</td><td>12.20</td>
                 </tr>
             </table>
-        </div>
-    
+        </div>    
     </body>
 </html>
