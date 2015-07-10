@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10-lug-2015, 11.56.15
+    Author     : Matteo
+*/
+body{
+   background-image: url(../images/pullman.jpg);
+   background-size: cover;   
+}
+textarea{
+    resize: none;
+}
+#input-bacheca{
+    position:absolute;
+    top:10%;
+    left:35%;
+    
+}
+#bacheca{
+    position: absolute;
+    top:43%;
+    left: 35%;
+    background-color: white;
+    padding:15px;
+    padding-top: 3px;
+    border-radius: 15px;
+    border: 5px solid #000;
+}
+h6{
+    color: #c77405;
+}

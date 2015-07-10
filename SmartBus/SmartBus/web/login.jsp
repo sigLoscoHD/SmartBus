@@ -56,7 +56,7 @@
 		String ruolo = sesuser.ruolo;
 		
 		if(ruolo.equals("admin")){
-			response.sendRedirect("AdministratorPage.jsp");
+			response.sendRedirect("admin.jsp");
 		}
 		else{
 			response.sendRedirect("Home.jsp");
