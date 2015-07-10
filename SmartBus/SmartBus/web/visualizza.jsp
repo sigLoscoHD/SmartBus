@@ -4,6 +4,7 @@
     Author     : Matteo
 --%>
 
+<%@page import="database.Fermata"%>
 <%@page import="database.Citta"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -84,7 +85,7 @@
                             <option>---</option>                           
                         </select>
                 </div>
-                <button type="button" class="btn btn-warning" >Visualizza Orari</button>
+                <button type="button" class="btn btn-warning" onclick="visualizzaOrari();">Visualizza Orari</button>
             </form>
         </div>  
         <div class="panel panel-default">
@@ -92,19 +93,7 @@
             <div class="panel-heading">Orari</div>
 
             <!-- Table -->
-            <table class="table">
-                <tr>
-                    <td>Fermate</td><td>corsa1</td><td>corsa2</td><td>corsa3</td><td>corsa4</td><td>corsa5</td>
-                </tr>
-                <tr>
-                    <td>Fermata1</td><td>8.00</td><td>9.00</td><td>10.00</td><td>11.00</td><td>12.00</td>
-                </tr>
-                <tr>
-                    <td>Fermata2</td><td>8.10</td><td>9.10</td><td>10.10</td><td>11.10</td><td>12.10</td>
-                </tr>
-                <tr>
-                    <td>Fermata3</td><td>8.20</td><td>9.20</td><td>10.20</td><td>11.20</td><td>12.20</td>
-                </tr>
+            <table class="table" id="orari">               
             </table>
         </div>    
     </body>

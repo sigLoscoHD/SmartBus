@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Time;
 import java.util.ArrayList;
 import javax.servlet.ServletContext;
 
@@ -317,7 +318,48 @@ public class DBQuery {
                     e.printStackTrace();
             }
             return atratta;
-             // End getCompagnia
+             // End getTratta
+	}
+       
+       public static ArrayList <Fermata> getFermata(int tratta,ServletContext cont)
+	{
+            ArrayList <Fermata> afermata=new ArrayList();
+            
+            try
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+                "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+
+                PreparedStatement pstmt = con.prepareStatement(" select distinct orario, fermata ,f.Nome_fermata,f.citta" + 
+                                                               " from tratta as t  " + 
+                                                                    " join corsa as c on c.Tratta= t.ID " +
+                                                                    " join orario as o on o.Corsa= c.id " +
+                                                                    " join fermata as f on f.ID=o.Fermata " +
+                                                                    " where tratta like ?");
+
+                pstmt.setInt(1, tratta);
+
+                ResultSet rs = pstmt.executeQuery();
+
+                while (rs.next()){
+                    Time orario=rs.getTime("orario");
+                    int id=rs.getInt("fermata");
+                    String nome_fermata=rs.getString("Nome_fermata");
+                    int id_citta=rs.getInt("citta");
+
+                    Fermata f = new Fermata(orario, id, nome_fermata, id_citta);
+                    
+                    afermata.add(f);
+                }
+                con.close();			
+            }
+            catch (Exception e) {
+                    System.out.println("Errore con DB o Query errata");
+                    e.printStackTrace();
+            }
+            return afermata;
+             // End getFermata
 	}
 }
 

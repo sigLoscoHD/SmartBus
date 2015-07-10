@@ -11,7 +11,6 @@ function listenerTipoTratta(){
         var valTipoTratta=tipoTratta.val();     
         var compagnia = $("#compagnia").val();
         var citta=$("#citta").val();
-        console.log(citta);
         $.ajax({
               type : "POST",
               url : "tratta.jsp",
@@ -27,4 +26,35 @@ function listenerTipoTratta(){
               }
          });	   
     });
+}
+
+function visualizzaOrari(){
+    var citta=$( "#citta option:selected" ).text(); 
+    var compagnia=$( "#compagnia option:selected" ).text();
+    var tipo_tratta=$( "#tipo-tratta option:selected" ).text();
+    var tratta=$( "#tratta option:selected" ).text();
+   
+    if(citta=="---" || compagnia=="---" || tipo_tratta=="---" || tratta=="---"){
+       $("body").append("<div id='err-vis'class='alert alert-danger alert-dismissible fade' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato riempito</div>");
+	           $("#err-vis").addClass("in");
+                    window.setTimeout(function() { $("#err-vis").alert('close'); }, 3000); 
+    }
+    else{
+        var tratta=$("#tratta").val();
+        $.ajax({
+            type : "POST",
+            url : "fermata.jsp",
+            data : "tratta=" + tratta ,
+            dataType: "json",
+            success : function(data) {
+                var orari_partenza=Object.keys(data).sort();
+                $("#orari").empty();
+                $("#orari").append("<tr><td>Fermate</td></tr>")
+                console.log(data);
+                for(var i=0;i<orari_partenza.length;i++){
+                    $("#orari").append("<tr><td>"+ data[orari_partenza[i]]+"</td></tr>");
+                }
+            }
+        });	
+    }
 }

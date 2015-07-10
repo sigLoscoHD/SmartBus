@@ -29,18 +29,17 @@
     	String dbemail=DBQuery.check_email(email, cont);
     	
     	if(dbemail.equals("")){
-	    	int i=DBQuery.registrazione(nome, cognome, email, password, sesso, context);
-	    	
-	    	 if(i>0){
-	    		 response.sendRedirect("index.jsp?mex=okreg");
-	    		 
-	    	 }
-	    	 else {
-	    	      response.sendRedirect("index.jsp?mex=errreg");
-	    	      }
-	    	}
+            int i=DBQuery.registrazione(nome, cognome, email, password, sesso, context);
+
+            if(i>0){
+                response.sendRedirect("index.jsp?mex=okreg");
+            }
+            else{
+                response.sendRedirect("index.jsp?mex=errreg");
+            }
+	}
     	else{
-    		response.sendRedirect("index.jsp?mex=email");
+            response.sendRedirect("index.jsp?mex=email");
     	}
     	%>
     </body>
