@@ -93,7 +93,7 @@
             <div class="panel-heading">Orari</div>
 
             <!-- Table -->
-            <table class="table" id="orari">               
+            <table class="table" id="orari">
             </table>
         </div>    
     </body>

@@ -12,19 +12,19 @@ function listenerTipoTratta(){
         var compagnia = $("#compagnia").val();
         var citta=$("#citta").val();
         $.ajax({
-              type : "POST",
-              url : "tratta.jsp",
-              data : "tipo=" + valTipoTratta + "&compagnia=" + compagnia+ "&citta=" + citta,
-              dataType: "json",
-              success : function(data) {
-                  var tratte=Object.keys(data);
-                  $("#tratta").empty();
-                  $("#tratta").append("<option>---</option>");                
-                  for(var i=0;i<tratte.length;i++){
-                      $("#tratta").append("<option value="+tratte[i]+">"+data[tratte[i]]+"</option>");
-                  }
-              }
-         });	   
+                type : "POST",
+                url : "tratta.jsp",
+                data : "tipo=" + valTipoTratta + "&compagnia=" + compagnia+ "&citta=" + citta,
+                dataType: "json",
+                success : function(data){
+                    var tratte=Object.keys(data);
+                    $("#tratta").empty();
+                    $("#tratta").append("<option>---</option>");                
+                    for(var i=0;i<tratte.length;i++){
+                    $("#tratta").append("<option value="+tratte[i]+">"+data[tratte[i]]+"</option>");
+                    }
+                }
+        });	   
     });
 }
 
@@ -49,12 +49,31 @@ function visualizzaOrari(){
             success : function(data) {
                 var orari_partenza=Object.keys(data).sort();
                 $("#orari").empty();
-                $("#orari").append("<tr><td>Fermate</td></tr>")
-                console.log(data);
+                $("#orari").append("<tr id='fermate'></tr>");
                 for(var i=0;i<orari_partenza.length;i++){
-                    $("#orari").append("<tr><td>"+ data[orari_partenza[i]]+"</td></tr>");
+                    $("#fermate").append("<td>"+ data[orari_partenza[i]]+"</td>");
                 }
-            }
-        });	
-    }
+                $.ajax({
+                    type : "POST",
+                    url : "orario.jsp",
+                    data : "tratta=" + tratta ,
+                    dataType: "json",
+                    success : function(data){
+                        console.log(JSON.stringify(data));
+                        for(var i=0;i<data["result"].length;i++){
+                            var currentCorsa;
+                            currentCorsa=data["result"][i].corsa;
+                            if(i==0||currentCorsa!=data["result"][i-1].corsa){
+                                $("#orari").append("<tr class="+currentCorsa+"><td>"+ data["result"][i].orario+"</td></tr>");
+                            }
+                            else{
+                                $("."+currentCorsa).append("<td>"+ data["result"][i].orario +"</td>");
+                            }
+                        }                    
+                    }                 
+                });
+                
+            }              
+        });
+    }	
 }

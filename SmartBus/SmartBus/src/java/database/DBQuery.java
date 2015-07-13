@@ -336,7 +336,9 @@ public class DBQuery {
                                                                     " join corsa as c on c.Tratta= t.ID " +
                                                                     " join orario as o on o.Corsa= c.id " +
                                                                     " join fermata as f on f.ID=o.Fermata " +
-                                                                    " where tratta like ?");
+                                                               " where tratta like ?"+
+                                                               " group by f.Nome_fermata "+
+                                                               " order by corsa, orario ");
 
                 pstmt.setInt(1, tratta);
 
@@ -359,6 +361,47 @@ public class DBQuery {
                     e.printStackTrace();
             }
             return afermata;
+             // End getFermata
+	}
+       
+       public static ArrayList <Orario> getOrari(int tratta,ServletContext cont)
+	{
+            ArrayList <Orario> aorari = new ArrayList();
+            
+            try
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+                "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+
+                PreparedStatement pstmt = con.prepareStatement(" select o.ID as id_corsa, o.Fermata, o.Orario, o.Corsa, c.AR as ar , c.Tratta " + 
+                                                               " from orario as o  " + 
+                                                                    " join corsa as c on o.Corsa=c.ID " +
+                                                                    " join tratta as t on c.Tratta=t.ID " +
+                                                                    " WHERE t.id like ? ");
+
+                pstmt.setInt(1, tratta);
+
+                ResultSet rs = pstmt.executeQuery();
+
+                while (rs.next()){
+                   int id = rs.getInt("id_corsa");
+                   int fermata=rs.getInt("Fermata");
+                   Time orario=rs.getTime("Orario");
+                   int corsa = rs.getInt("Corsa");
+                   int ar = rs.getInt("ar");
+                     
+                   Orario o = new Orario(id, fermata, orario, corsa, ar, tratta);
+                   
+                   aorari.add(o);
+                }
+                con.close();			
+            }
+            catch (Exception e) {
+                    System.out.println("Errore con DB o Query errata");
+                    e.printStackTrace();
+            }
+            return aorari;
              // End getFermata
 	}
 }
