@@ -92,11 +92,18 @@ function verificaDati(id){
             url : "modifica.jsp",
             data : "nome=" + nome + "&cognome=" + cognome +"&data=" + data + "&residenza=" + residenza +"&luogonas="+ luogonas,
             dataType:"text",
+<<<<<<< HEAD
             success : function(data) {
                 console.log("ciao")
                 $('#abb-modal').modal('hide');
              
           }
+=======
+            success : function(data){              
+                $("#next").attr("data-toggle","modal");
+                $("#next").attr("data-target","#abbpay-modal");
+            }
+>>>>>>> 23939cc6f5d2301d42a1dd75d78a5beae694ad5b
     });
    
 }

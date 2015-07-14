@@ -12,16 +12,17 @@
         <title>HOME</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--JQuery JQueryUI-->
+        <script src="javascript/jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="javascript/jquery-ui.min.js" type="text/javascript"></script>
+        <link href="css/jquery-ui-1.9.2.custom.css" rel="stylesheet" type="text/css"/>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-         <!--JQuery JQueryUI-->
-        <script src="javascript/jquery-1.11.3.min.js" type="text/javascript"></script>
-        <script src="javascript/jquery-ui.min.js" type="text/javascript"></script>
-        <link href="css/jquery-ui-1.9.2.custom.css" rel="stylesheet" type="text/css"/>
+         
         <!--page CSS -->
         <link href="css/CSSnavbar.css" rel="stylesheet" type="text/css"/>
         <link href="css/CSShome.css" rel="stylesheet" type="text/css"/>
@@ -39,7 +40,12 @@
                     <a id="brand" class="navbar-brand" href="Home.jsp">SmartBus</a>
                 </div>
                 <div id="logout-container">
-                    <a href="logout.jsp"><button id="logout" type="button" class="btn btn-warning navbar-btn">Logout</button></a>   
+                    <a style="text-decoration: none;" href="visualizzaNotizie.jsp">
+                        <button id="notizie" type="button" class="btn btn-warning navbar-btn">
+                            <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span> Notizie
+                        </button>                       
+                    </a>
+                    <a href="logout.jsp"><button id="logout" type="button" class="btn btn-warning navbar-btn">Logout</button></a>           
                 </div>
             </div>
         </div>
