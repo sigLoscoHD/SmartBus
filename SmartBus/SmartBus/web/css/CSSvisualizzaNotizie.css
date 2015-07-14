@@ -1,0 +1,25 @@
+
+body{
+   background-image: url(../images/pullman.jpg);
+   background-size: cover;   
+}
+
+#bacheca{
+    margin-top: 100px;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+.notizia{
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: white;
+    padding:15px;
+    padding-top: 3px;
+    border-radius: 15px;
+    border: 3px solid #01154b;
+}
+
+h6{
+    color: #c77405;
+}

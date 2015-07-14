@@ -1,17 +1,19 @@
 <%-- 
-    Document   : Home
-    Created on : 6-lug-2015, 11.41.57
+    Document   : visualizzaNotizie
+    Created on : 14-lug-2015, 16.31.49
     Author     : B I G
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="database.Notizia"%>
+<%@page import="database.DBQuery"%>
 <%@page import="database.Utente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>HOME</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Notizie</title>
         <!--JQuery JQueryUI-->
         <script src="javascript/jquery-1.11.3.min.js" type="text/javascript"></script>
         <script src="javascript/jquery-ui.min.js" type="text/javascript"></script>
@@ -22,12 +24,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-         
         <!--page CSS -->
         <link href="css/CSSnavbar.css" rel="stylesheet" type="text/css"/>
-        <link href="css/CSShome.css" rel="stylesheet" type="text/css"/>
+        <link href="css/CSSvisualizzaNotizie.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>    
+    <body>
         <%
         Utente sesuser=null;
         sesuser=(Utente) session.getAttribute("loggato");
@@ -39,31 +40,33 @@
                 <div class="navbar-header">
                     <a id="brand" class="navbar-brand" href="Home.jsp">SmartBus</a>
                 </div>
-                <div id="logout-container">
+                <div id="logout-container">                  
                     <a style="text-decoration: none;" href="visualizzaNotizie.jsp">
                         <button id="notizie" type="button" class="btn btn-warning navbar-btn">
                             <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span> Notizie
-                        </button>                       
-                    </a>
-                    <a href="logout.jsp"><button id="logout" type="button" class="btn btn-warning navbar-btn">Logout</button></a>           
+                        </button>                     
+                    </a>    
+                    <a href="logout.jsp">
+                        <button id="logout" type="button" class="btn btn-warning navbar-btn">
+                            Logout
+                        </button>
+                    </a>     
+                    
                 </div>
             </div>
         </div>
-        
-        <div id="benvenuto">
-            <span>Benvenuto <%out.print(sesuser.nome);%>, da qui puoi accedere alle funzionalità del sito</span>
-        </div>
-        
-        <div id="acquista" class="jumbotron">
-            <h1>Acquista</h1>
-            <p id="slogan">Acquista ora con un click!</p>
-            <p><a id="learn-more" class="btn btn-warning btn-lg" href="acquista.jsp" role="button">Vai a: Acquista</a></p>
-        </div>
-        
-        <div id="visualizza" class="jumbotron">
-            <h1>Tratte e Orari</h1>
-            <p id="slogan">Visualizza tratte e orari dei bus che ti interessano!</p>
-            <p><a id="learn-more" class="btn btn-warning btn-lg" href="visualizza.jsp" role="button">Vai a: Visualizza Tratte Orari</a></p>
-        </div>
+        <div id="bacheca">
+             <%
+             ArrayList <Notizia> anotifiche = DBQuery.visualizzaNotizie(context);
+             for(int i=0;i<anotifiche.size();i++){
+             %>
+             <div class='notizia'>
+                 <h6 id='data'><%out.print(anotifiche.get(i).data+" "+anotifiche.get(i).ora);%></h6>
+                 <div id='testo'><%out.print(anotifiche.get(i).testo);%></div>                   
+             </div>
+             <%
+             }
+             %>
+         </div>      
     </body>
 </html>
