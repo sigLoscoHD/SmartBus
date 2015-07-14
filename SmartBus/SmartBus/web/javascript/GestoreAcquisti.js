@@ -4,21 +4,48 @@
  * and open the template in the editor.
  */
 
-function controlloBiglietto(){
+function listenerTipoTratta2(){
+    
+    var tipoTratta=$("[name='tipo_tratta']");
+    
+    tipoTratta.bind('change',function(){ 
+        var valTipoTratta=tipoTratta.val();
+        console.log(valTipoTratta);
+                if(valTipoTratta=="urbano"){
+                   $("#tratta").empty();
+                    $("#tratta").attr("disabled", "disabled"); 
+                    }
+                if(valTipoTratta=="extra"){
+                   $("#tratta").removeAttr('disabled'); 
+                }    
+                    
+                });
+     
+}
+
+
+function controlloChange(){
    var citta=$( "#citta option:selected" ).text(); 
    var compagnia=$( "#compagnia option:selected" ).text();
    var tipo_tratta=$( "#tipo-tratta option:selected" ).text();
    var tratta=$( "#tratta option:selected" ).text();
+    $("#bigl-button").removeAttr("data-toggle");
+    $("#bigl-button").removeAttr("data-target");
+    $("#abb-button").removeAttr("data-toggle");
+    $("#abb-button").removeAttr("data-target"); 
    
-   if(citta=="---" || compagnia=="---" || tipo_tratta=="---" || tratta=="---"){
+   if(citta=="---" || compagnia=="---" || tipo_tratta=="---" || (tratta=="---" && $("#tratta").prop("disabled")==false)){
        $("body").append("<div id='err-acq'class='alert alert-danger alert-dismissible fade' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato riempito</div>");
 	           $("#err-acq").addClass("in");
                     window.setTimeout(function() { $("#err-acq").alert('close'); }, 3000); 
    }
    
    else{
+       
        $("#bigl-button").attr("data-toggle","modal");
-       $("#bigl-button").attr("data-target","#bigl-modal");
+       $("#bigl-button").attr("data-target","#Paymodal");
+         $("#abb-button").attr("data-toggle","modal");
+       $("#abb-button").attr("data-target","#abb-modal");
        
    }
    
@@ -26,10 +53,10 @@ function controlloBiglietto(){
 }
 
 function controlloAbbonamento(){
-   var citta=$( "#citta2 option:selected" ).text(); 
-   var compagnia=$( "#compagnia2 option:selected" ).text();
-   var tipo_tratta=$( "#tipo-tratta2 option:selected" ).text();
-   var tratta=$( "#tratta2 option:selected" ).text();
+   var citta=$( "#citta option:selected" ).text(); 
+   var compagnia=$( "#compagnia option:selected" ).text();
+   var tipo_tratta=$( "#tipotratta option:selected" ).text();
+   var tratta=$( "#tratta option:selected" ).text();
    
    if(citta=="---" || compagnia=="---" || tipo_tratta=="---" || tratta=="---"){
        $("body").append("<div id='err-acq'class='alert alert-danger alert-dismissible fade' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato riempito</div>");
@@ -49,6 +76,12 @@ function verificaDati(id){
     var data=$("#data").val();
     var residenza=$("#residenza").val();
     var luogonas=$("#luogonas").val();
+    console.log(data);
+  if(nome== "" || cognome=="" || residenza=="" || luogonas=="" || data=="" ){
+       $("body").append("<div id='err-acq'class='alert alert-danger alert-dismissible fade' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato riempito</div>");
+	           $("#err-acq").addClass("in");
+                    window.setTimeout(function() { $("#err-acq").alert('close'); }, 3000); 
+  }
     
     //chiamata ajax alla pagina di modifica.jsp 
     // la risposta inserirà gli attributi data-toogle e data-target al button
@@ -60,12 +93,10 @@ function verificaDati(id){
             data : "nome=" + nome + "&cognome=" + cognome +"&data=" + data + "&residenza=" + residenza +"&luogonas="+ luogonas,
             dataType:"text",
             success : function(data) {
-                
-                $("#next").attr("data-toggle","modal");
-                $("#next").attr("data-target","#abbpay-modal");
-            
-
-            }
+                console.log("ciao")
+                $('#abb-modal').modal('hide');
+             
+          }
     });
    
 }

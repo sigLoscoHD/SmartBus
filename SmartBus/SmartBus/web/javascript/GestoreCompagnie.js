@@ -12,6 +12,7 @@ function listenerCompagnia(){
         $("#tipotratta").append("<option value='urbano'>Urbana</option>");
         $("#tipotratta").append("<option value='extra'>Extra-urbana</option>");
         listenerTipoTratta();
+        listenerTipoTratta2()
     });
 }
 
