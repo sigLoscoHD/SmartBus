@@ -48,11 +48,17 @@ function visualizzaOrari(){
             dataType: "json",
             success : function(data) {
                 var orari_partenza=Object.keys(data).sort();
-                $("#orari").empty();
-                $("#orari").append("<tr id='fermate'></tr>");
+                $("#orari-andata").empty();
+                $("#orari-andata").append("<tr id='fermatea'></tr>");
+                $("#orari-ritorno").empty();
+                $("#orari-ritorno").append("<tr id='fermater'></tr>");
                 for(var i=0;i<orari_partenza.length;i++){
-                    $("#fermate").append("<td>"+ data[orari_partenza[i]]+"</td>");
+                    $("#fermatea").append("<td>"+ data[orari_partenza[i]]+"</td>");
                 }
+                for(var i=orari_partenza.length;i--;){
+                    $("#fermater").append("<td>"+ data[orari_partenza[i]]+"</td>");
+                }
+                
                 $.ajax({
                     type : "POST",
                     url : "orario.jsp",
@@ -63,16 +69,25 @@ function visualizzaOrari(){
                         for(var i=0;i<data["result"].length;i++){
                             var currentCorsa;
                             currentCorsa=data["result"][i].corsa;
-                            if(i==0||currentCorsa!=data["result"][i-1].corsa){
-                                $("#orari").append("<tr class="+currentCorsa+"><td>"+ data["result"][i].orario+"</td></tr>");
+                            if(data["result"][i].ar==0){
+                                if(i==0||currentCorsa!=data["result"][i-1].corsa){
+                                    $("#orari-andata").append("<tr class="+currentCorsa+"><td>"+ data["result"][i].orario+"</td></tr>");
+                                }
+                                else{
+                                    $("."+currentCorsa).append("<td>"+ data["result"][i].orario +"</td>");
+                                }
                             }
                             else{
-                                $("."+currentCorsa).append("<td>"+ data["result"][i].orario +"</td>");
+                                if(i==0||currentCorsa!=data["result"][i-1].corsa){
+                                    $("#orari-ritorno").append("<tr class="+currentCorsa+"><td>"+ data["result"][i].orario+"</td></tr>");
+                                }
+                                else{
+                                    $("."+currentCorsa).append("<td>"+ data["result"][i].orario +"</td>");
+                                }
                             }
                         }                    
                     }                 
-                });
-                
+                });                
             }              
         });
     }	

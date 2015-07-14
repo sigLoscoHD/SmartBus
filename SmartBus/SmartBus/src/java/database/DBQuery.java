@@ -378,7 +378,8 @@ public class DBQuery {
                                                                " from orario as o  " + 
                                                                     " join corsa as c on o.Corsa=c.ID " +
                                                                     " join tratta as t on c.Tratta=t.ID " +
-                                                                    " WHERE t.id like ? ");
+                                                                    " WHERE t.id like ? " +
+                                                                    " order by corsa, orario ");
 
                 pstmt.setInt(1, tratta);
 

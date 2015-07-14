@@ -90,10 +90,18 @@
         </div>  
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">Orari</div>
+            <div class="panel-heading">Orari andata</div>
 
-            <!-- Table -->
-            <table class="table" id="orari">
+            <!-- Orari Andata -->
+            <table class="table" id="orari-andata">
+            </table>
+        </div>    
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Orari ritorno</div>
+
+            <!-- Orari Ritorno -->
+            <table class="table" id="orari-ritorno">
             </table>
         </div>    
     </body>
