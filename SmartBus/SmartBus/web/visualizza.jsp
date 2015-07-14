@@ -47,7 +47,12 @@
                     <a id="brand" class="navbar-brand" href="Home.jsp">SmartBus</a>
                 </div>
                 <div id="logout-container">
-                  <a href="logout.jsp"><button id="logout" type="button" class="btn btn-warning navbar-btn">Logout</button></a>     
+                    <a>
+                        <button id="notizie" type="button" class="btn btn-warning navbar-btn">
+                            <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span> Notizie
+                        </button> 
+                    </a>
+                    <a href="logout.jsp"><button id="logout" type="button" class="btn btn-warning navbar-btn">Logout</button></a>     
                 </div>
             </div>
         </div>   

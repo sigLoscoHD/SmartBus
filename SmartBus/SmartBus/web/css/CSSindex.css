@@ -50,28 +50,11 @@ body{
     color: #01154b;
 }
 
-#ok-reg{
+.mess{
     position:absolute;
+    float: right;
     top:10%;
-    left:69%;
-}
-
-#err-reg{
-    position:absolute;
-    top:10%;
-    left:69%;
-}
-
-#err-mail{
-    position:absolute;
-    top:10%;
-    left:75%;
-}
-
-#err-pass{
-    position: absolute;
-    top:5%;
-    left:74%;
+    right:3%;
 }
 
 #desc{
