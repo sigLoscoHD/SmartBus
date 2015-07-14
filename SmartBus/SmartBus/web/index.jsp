@@ -33,9 +33,7 @@
             $(".mess").addClass("in");
                     window.setTimeout(function() { $(".mess").alert('close'); }, 3000);            
         </script>
-        <%
-             
-            
+        <%          
             ServletContext context = pageContext.getServletContext();
  
             Cookie[] cookies = request.getCookies();
@@ -161,7 +159,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Info</h4>
                     </div>
-                    <div class="modal-body">
+                    <div id="desc" class="modal-body">
                         <p><strong>SmartBus</strong> è un’applicazione per acquisto di biglietti per il trasporto pubblico, a cui si può accedere mediante l’utilizzo di uno smartphone oppure via web con l’utilizzo di un qualsiasi terminale.</p>
                         <p>L’applicazione è un innovativo sistema di gestione degli autobus che consente agli utenti di accedere ad uno strumento con cui acquistare il biglietto per la tratta desiderata dove e quando si vuole. </p>
                         <p>SmartBus può risolvere ogni bisogno richiesto dagli utenti per rendere il viaggio, il più confortevole possibile. </p><br/>
