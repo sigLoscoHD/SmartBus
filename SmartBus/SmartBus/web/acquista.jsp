@@ -110,7 +110,7 @@
                             Il prezzo è di..
                         </div>
                         <hr>
-                        <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" role="form">
                       <div class="form-group">
                         <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
                         <div class="col-sm-9">
@@ -173,9 +173,8 @@
                         <div class="col-sm-offset-3 col-sm-9">
                             <button type="button" class="btn btn-warning" onclick="generaBiglietto(<%out.print(" ' "+ sesuser.nome +" ' ");%> , <%out.print(" ' "+ sesuser.cognome +" ' ");%>)">Pay Now</button>
                         </div>
-                      </div>
-                    
-                  </form>
+                      </div>                   
+                    </form>
                     </div>
                 </div>
             </div>
@@ -216,12 +215,9 @@
                                     <label for="luogonas">Luogo di nascita:</label>
                                     <input type="text" class="form-control" required id="luogonas" name="luogonas" value="<%if(sesuser.luogonascita!=null){out.print(sesuser.luogonascita);}else{out.print("");}%>">
                             </div>
-                            <input type="submit" value="next" class="btn btn-warning" id="next" onclick="verificaDati();" data-toggle="modal" data-target="#Paymodal"/>
-                        </form>
-                      
+                            <input type="button" value="next" class="btn btn-warning" id="next" data-toogle="modal" data-target="#Paymodal" onclick="verificaDati();"/>
+                        </form>                    
                     </div>
-                   
-
                 </div>
             </div>
         </div>

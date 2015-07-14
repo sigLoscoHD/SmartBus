@@ -52,24 +52,6 @@ function controlloChange(){
    
 }
 
-function controlloAbbonamento(){
-   var citta=$( "#citta option:selected" ).text(); 
-   var compagnia=$( "#compagnia option:selected" ).text();
-   var tipo_tratta=$( "#tipotratta option:selected" ).text();
-   var tratta=$( "#tratta option:selected" ).text();
-   
-   if(citta=="---" || compagnia=="---" || tipo_tratta=="---" || tratta=="---"){
-       $("body").append("<div id='err-acq'class='alert alert-danger alert-dismissible fade' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato riempito</div>");
-	           $("#err-acq").addClass("in");
-                    window.setTimeout(function() { $("#err-acq").alert('close'); }, 3000); 
-   }
-   else{
-       $("#abb-button").attr("data-toggle","modal");
-       $("#abb-button").attr("data-target","#abb-modal");
-       
-   }
-}
-
 function verificaDati(id){
     var nome=$("#nome").val();
     var cognome=$("#cognome").val();
@@ -77,35 +59,27 @@ function verificaDati(id){
     var residenza=$("#residenza").val();
     var luogonas=$("#luogonas").val();
     console.log(data);
-  if(nome== "" || cognome=="" || residenza=="" || luogonas=="" || data=="" ){
-       $("body").append("<div id='err-acq'class='alert alert-danger alert-dismissible fade' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato riempito</div>");
+    if(nome== "" || cognome=="" || residenza=="" || luogonas=="" || data=="" ){
+          $("#next").removeAttr("data-toggle");
+          $("#next").removeAttr("data-target");
+           $("#abb-modal").append("<div id='err-acq'class='alert alert-danger alert-dismissible fade' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato riempito</div>");
 	           $("#err-acq").addClass("in");
                     window.setTimeout(function() { $("#err-acq").alert('close'); }, 3000); 
-  }
-    
-    //chiamata ajax alla pagina di modifica.jsp 
-    // la risposta inserirà gli attributi data-toogle e data-target al button
-    // in modo tale da poter aprire il nuovo modal di pagamento
-    // che una volta riempiti tutti i campi genererà un abbonamento in pdf
-     $.ajax({
+    }
+    else{
+         $("#next").attr("data-toggle","modal");
+         $("#next").attr("data-target","#Paymodal");
+       
+    $.ajax({
             type : "POST",
             url : "modifica.jsp",
             data : "nome=" + nome + "&cognome=" + cognome +"&data=" + data + "&residenza=" + residenza +"&luogonas="+ luogonas,
             dataType:"text",
-<<<<<<< HEAD
             success : function(data) {
-                console.log("ciao")
-                $('#abb-modal').modal('hide');
-             
-          }
-=======
-            success : function(data){              
-                $("#next").attr("data-toggle","modal");
-                $("#next").attr("data-target","#abbpay-modal");
+              $("#abb-modal").modal('hide');           
             }
->>>>>>> 23939cc6f5d2301d42a1dd75d78a5beae694ad5b
-    });
-   
+        });
+   }
 }
 
 function generaBiglietto(nome, cognome){
