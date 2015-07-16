@@ -472,6 +472,78 @@ public class DBQuery {
 
         return anotizia;
     } // End visualizzaNotifiche
+    
+    
+    
+    
+    public static BigliettoUrbano getPrezzoUrbano(String citta, String compagnia, ServletContext cont)
+    {
+        BigliettoUrbano bu=null;
+
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+            "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+
+            PreparedStatement pstmt = con.prepareStatement("SELECT Prezzo, Nome_citta, Nome_compagnia " + 
+                                                           "FROM biglietto_urbano AS bu join compagnia as c on c.ID=bu.Compagnia join citta as ci on ci.ID=bu.Citta" + 
+                                                                " WHERE ci.Nome_citta LIKE ? AND c.Nome_compagnia LIKE ?;");
+
+            pstmt.setString(1, citta);
+            pstmt.setString(2, compagnia);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                Float prezzo = rs.getFloat("Prezzo");
+                bu=new BigliettoUrbano(prezzo, compagnia, citta);
+            }
+            con.close();			
+        }
+        catch (Exception e) {
+                System.out.println("Errore con DB o Query errata");
+                e.printStackTrace();
+        }
+        return bu;
+         // End getPrezzoUrbano
+    }
+    
+    
+    public static BigliettoExtra getPrezzoExtra(String tratta, String compagnia, ServletContext cont)
+    {
+        BigliettoExtra be=null;
+
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+            "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+
+            PreparedStatement pstmt = con.prepareStatement("SELECT Prezzo, Nome_tratta, Nome_compagnia" + 
+                                                           " FROM biglietto_extra AS be join compagnia as c on c.ID=be.Compagnia join tratta as t on t.ID=be.Tratta" + 
+                                                                " WHERE t.Nome_tratta LIKE ? AND c.Nome_compagnia LIKE ? ");
+
+            pstmt.setString(1, tratta);
+            pstmt.setString(2, compagnia);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                Float prezzo = rs.getFloat("Prezzo");
+                be=new BigliettoExtra(prezzo, compagnia, tratta);
+            }
+            con.close();			
+        }
+        catch (Exception e) {
+                System.out.println("Errore con DB o Query errata");
+                e.printStackTrace();
+        }
+        return be;
+         // End getBigliettoExtra
+    }
+    
+    
 }
 
         
