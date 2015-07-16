@@ -27,7 +27,7 @@ function listenerTipoTratta2(){
 function controlloChange(){
    var citta=$( "#citta option:selected" ).text(); 
    var compagnia=$( "#compagnia option:selected" ).text();
-   var tipo_tratta=$( "#tipo-tratta option:selected" ).text();
+   var tipo_tratta=$( "#tipotratta option:selected" ).text();
    var tratta=$( "#tratta option:selected" ).text();
     $("#bigl-button").removeAttr("data-toggle");
     $("#bigl-button").removeAttr("data-target");
@@ -41,10 +41,21 @@ function controlloChange(){
    }
    
    else{
-       
+   
        $("#bigl-button").attr("data-toggle","modal");
        $("#bigl-button").attr("data-target","#Paymodal");
-         $("#abb-button").attr("data-toggle","modal");
+       
+   $.ajax({
+            type : "POST",
+            url : "prezzo.jsp",
+            data : "tipo=" + tipo_tratta + "&citta=" + citta + "&compagnia=" + compagnia + "&tratta=" + tratta,
+            dataType:"text",
+            success : function(data) {
+                 $("#prezzo-bigl").empty();
+                 $("#prezzo-bigl").append(data); 
+            }
+        }); 
+       $("#abb-button").attr("data-toggle","modal");
        $("#abb-button").attr("data-target","#abb-modal");
        
    }
@@ -76,11 +87,25 @@ function verificaDati(id){
             data : "nome=" + nome + "&cognome=" + cognome +"&data=" + data + "&residenza=" + residenza +"&luogonas="+ luogonas,
             dataType:"text",
             success : function(data) {
+                
               $("#abb-modal").modal('hide');           
             }
         });
    }
 }
+
+function getPrezzo(){
+    var citta=$( "#citta option:selected" ).text(); 
+   var compagnia=$( "#compagnia option:selected" ).text();
+   var tipo_tratta=$( "#tipo-tratta option:selected" ).text();
+   var tratta=$( "#tratta option:selected" ).text();
+   console.log(citta);
+   console.log(compagnia);
+  
+}
+
+
+
 
 function generaBiglietto(nome, cognome){
             var doc = new jsPDF();

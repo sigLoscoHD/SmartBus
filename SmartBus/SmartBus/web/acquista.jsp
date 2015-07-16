@@ -98,7 +98,7 @@
         </div>
                     
          <!--Modal pagamento-->
-        <div class="modal fade" id="Paymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+         <div class="modal fade" id="Paymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" onload="getPrezzo();">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -107,7 +107,7 @@
                     </div>
                     <div class="modal-body">
                         <div id="prezzo-bigl">
-                            Il prezzo è di..
+                           
                         </div>
                         <hr>
                     <form class="form-horizontal" role="form">
