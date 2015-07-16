@@ -544,6 +544,74 @@ public class DBQuery {
     }
     
     
+    public static AbbonamentoUrbano getAbbonamentoUrbano(String citta, String compagnia, ServletContext cont)
+    {
+       AbbonamentoUrbano au=null;
+
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+            "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+
+            PreparedStatement pstmt = con.prepareStatement("SELECT Prezzo, Nome_citta, Nome_compagnia " + 
+                                                           "FROM abbonamento_urbano AS au join compagnia as c on c.ID=au.Compagnia join citta as ci on ci.ID=au.Citta" + 
+                                                                " WHERE ci.Nome_citta LIKE ? AND c.Nome_compagnia LIKE ?;");
+
+            pstmt.setString(1, citta);
+            pstmt.setString(2, compagnia);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                Float prezzo = rs.getFloat("Prezzo");
+                au= new AbbonamentoUrbano(prezzo, compagnia, citta);
+            }
+            con.close();			
+        }
+        catch (Exception e) {
+                System.out.println("Errore con DB o Query errata");
+                e.printStackTrace();
+        }
+        return au;
+         // End AbbonamentoUrbano
+    }
+    
+    
+    public static AbbonamentoExtra getAbbonamentoExtra(String tratta, String compagnia, ServletContext cont)
+    {
+        AbbonamentoExtra ae=null;
+
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://" + cont.getInitParameter("ip") + "/" + cont.getInitParameter("database") + "?" +
+            "user=" + cont.getInitParameter("user") + "&password=" + cont.getInitParameter("dbpassword"));
+
+            PreparedStatement pstmt = con.prepareStatement("SELECT Prezzo, Nome_tratta, Nome_compagnia" + 
+                                                           " FROM abbonamento_extra AS ae join compagnia as c on c.ID=ae.Compagnia join tratta as t on t.ID=ae.Tratta" + 
+                                                                " WHERE t.Nome_tratta LIKE ? AND c.Nome_compagnia LIKE ? ");
+
+            pstmt.setString(1, tratta);
+            pstmt.setString(2, compagnia);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                Float prezzo = rs.getFloat("Prezzo");
+                ae=new AbbonamentoExtra(prezzo, compagnia, tratta);
+            }
+            con.close();			
+        }
+        catch (Exception e) {
+                System.out.println("Errore con DB o Query errata");
+                e.printStackTrace();
+        }
+        return ae;
+         // End getAbbonamentoExtra
+    }
+    
+    
 }
 
         

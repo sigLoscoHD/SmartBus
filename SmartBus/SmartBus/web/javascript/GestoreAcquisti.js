@@ -52,7 +52,10 @@ function controlloChange(){
             dataType:"text",
             success : function(data) {
                  $("#prezzo-bigl").empty();
-                 $("#prezzo-bigl").append(data); 
+                 $("#prezzo-bigl").append(data);
+                 $("#pay").click(function(){
+                            generaBiglietto(citta, compagnia, tipo_tratta, tratta); 
+                        });
             }
         }); 
        $("#abb-button").attr("data-toggle","modal");
@@ -63,17 +66,21 @@ function controlloChange(){
    
 }
 
-function verificaDati(id){
+function verificaDati(){
     var nome=$("#nome").val();
     var cognome=$("#cognome").val();
-    var data=$("#data").val();
+    var datanas=$("#data").val();
     var residenza=$("#residenza").val();
     var luogonas=$("#luogonas").val();
-    console.log(data);
-    if(nome== "" || cognome=="" || residenza=="" || luogonas=="" || data=="" ){
+    var citta=$( "#citta option:selected" ).text(); 
+    var compagnia=$( "#compagnia option:selected" ).text();
+    var tipo_tratta=$( "#tipotratta option:selected" ).text();
+    var tratta=$( "#tratta option:selected" ).text();
+    
+    if(nome== "" || cognome=="" || residenza=="" || luogonas=="" || datanas=="" ){
           $("#next").removeAttr("data-toggle");
           $("#next").removeAttr("data-target");
-           $("#abb-modal").append("<div id='err-acq'class='alert alert-danger alert-dismissible fade' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato riempito</div>");
+          $("#abb-modal").append("<div id='err-acq'class='alert alert-danger alert-dismissible fade' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato riempito</div>");
 	           $("#err-acq").addClass("in");
                     window.setTimeout(function() { $("#err-acq").alert('close'); }, 3000); 
     }
@@ -87,46 +94,66 @@ function verificaDati(id){
             data : "nome=" + nome + "&cognome=" + cognome +"&data=" + data + "&residenza=" + residenza +"&luogonas="+ luogonas,
             dataType:"text",
             success : function(data) {
-                
-              $("#abb-modal").modal('hide');           
+               $("#abb-modal").modal('hide'); 
+                  $.ajax({
+                    type : "POST",
+                    url : "abbonamento.jsp",
+                    data : "tipo=" + tipo_tratta + "&citta=" + citta + "&compagnia=" + compagnia + "&tratta=" + tratta,
+                    dataType:"text",
+                    success : function(data) {
+                         $("#prezzo-bigl").empty();
+                         $("#prezzo-bigl").append(data);
+                        $("#pay").click(function(){
+                            generaAbbonamento(nome, cognome, datanas, residenza, luogonas, tipo_tratta, compagnia, tratta); 
+                        });
+                    }
+                }); 
             }
         });
    }
 }
 
-function getPrezzo(){
-    var citta=$( "#citta option:selected" ).text(); 
-   var compagnia=$( "#compagnia option:selected" ).text();
-   var tipo_tratta=$( "#tipo-tratta option:selected" ).text();
-   var tratta=$( "#tratta option:selected" ).text();
-   console.log(citta);
-   console.log(compagnia);
-  
-}
 
-
-
-
-function generaBiglietto(nome, cognome){
+function generaBiglietto(citta, compagnia, tipo_tratta, tratta){
             var doc = new jsPDF();
-           doc.text(20, 20, 'Biglietto');
-           doc.text(20, 30, 'Compagnia: ');
-           doc.text(20, 40, 'Citta: ');
-           doc.text(20, 50, 'Tratta: ');
-           doc.text(20, 60, 'Acquistato da' + nome + ' ' + cognome);
+            if (tipo_tratta=="Urbana")
+                doc.text(20, 20, 'Biglietto urbano');
+            else{
+                doc.text(20, 20, 'Biglietto Extra-urbano');
+            }
+           doc.text(20, 30, 'Biglietto erogato dalla compagnia: ' +compagnia);
+           doc.text(20, 40, 'Citta: ' + citta);
+           if(tipo_tratta=="Extra-urbana"){
+               doc.text(20, 50, 'Tratta: ' + tratta);
+           }
+           
+          
            // Output as Data URI
            doc.output('datauri');
 }
 
-function generaAbbonamento(nome, cognome, datanas, luogonas, residenza){
+function generaAbbonamento(nome, cognome, data, residenza, luogonas, tipo_tratta, compagnia, tratta){
        var doc = new jsPDF();
-       doc.text(20, 20, 'Abbonamento nome_compagnia');
+       if(tipo_tratta=="Urbana"){
+         doc.text(20, 20, 'Abbonamento urbano');  
+       }
+       else{
+          doc.text(20, 20, 'Abbonamento extra-urbano');   
+       }
+       
        doc.text(20, 30, 'Nome : ' + nome);
        doc.text(20, 40, 'Cognome :' + cognome);
        doc.text(20, 50, 'Nato a :' + luogonas);
-       doc.text(20, 60, ' il :' + datanas);
+       doc.text(20, 60, 'il :' + data);
        doc.text(20, 70, 'Risiede a : ' + residenza);
-       doc.text(20, 80, 'Valido per la tratta nome_tratta ');
+       if(tipo_tratta=="Extra-urbana"){
+        doc.text(20, 80, 'Valido per la tratta: ' + tratta);
+        doc.text(20, 90, 'Abbonamento erogato dalla compagnia: ' + compagnia);
+       }else
+       {
+         doc.text(20, 80, 'Abbonamento erogato dalla compagnia: ' + compagnia);  
+       }
+       
        // Output as Data URI
        doc.output('datauri');
 }

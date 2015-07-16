@@ -98,7 +98,7 @@
         </div>
                     
          <!--Modal pagamento-->
-         <div class="modal fade" id="Paymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" onload="getPrezzo();">
+         <div class="modal fade" id="Paymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -171,7 +171,7 @@
                       </div>
                       <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <button type="button" class="btn btn-warning" onclick="generaBiglietto(<%out.print(" ' "+ sesuser.nome +" ' ");%> , <%out.print(" ' "+ sesuser.cognome +" ' ");%>)">Pay Now</button>
+                            <button type="button" class="btn btn-warning" id="pay" >Pay Now</button>
                         </div>
                       </div>                   
                     </form>
@@ -204,7 +204,7 @@
                             </div>
                             
                             <div class="form-group">
-                                    <label for="datanascita">Data di nascita: <%out.println(sesuser.datanascita);%></label>
+                                    <label for="datanascita">Data di nascita: </label>
                                  <input type="date" id="data" class="form-control"  required value="<%if(sesuser.datanascita!=null){out.print(sesuser.datanascita);}%>">
                                </div>
                              <div class="form-group">
