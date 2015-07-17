@@ -35,9 +35,9 @@ function controlloChange(){
     $("#abb-button").removeAttr("data-target"); 
    
    if(citta=="---" || compagnia=="---" || tipo_tratta=="---" || (tratta=="---" && $("#tratta").prop("disabled")==false)){
-       $("body").append("<div id='err-acq'class='alert alert-danger alert-dismissible fade' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato riempito</div>");
-	           $("#err-acq").addClass("in");
-                    window.setTimeout(function() { $("#err-acq").alert('close'); }, 3000); 
+       $("body").append("<div id='err-select'class='alert alert-danger alert-dismissible fade mess' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato riempito</div>");
+	           $("#err-select").addClass("in");
+                    window.setTimeout(function() { $("#err-select").alert('close'); }, 3000); 
    }
    
    else{
@@ -54,7 +54,22 @@ function controlloChange(){
                  $("#prezzo-bigl").empty();
                  $("#prezzo-bigl").append(data);
                  $("#pay").click(function(){
-                            generaBiglietto(citta, compagnia, tipo_tratta, tratta); 
+                     
+                     var numerocarta=$("#card-number").val();
+                            var nomecarta=$("#card-holder-name").val();
+                            var mesi=$("#expiry-month  option:selected").text();
+                            var cvv=$("#cvv").val();
+                        if((numerocarta=="" || numerocarta.length <16) || (cvv=="" || cvv.length <3) || nomecarta=="" || mesi=="Month"){
+                             $("#Paymodal").append("<div id='err-pay'class='alert alert-danger alert-dismissible fade mess' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato compilato e/o lunghezza errata!</div>");
+                                       $("#err-pay").addClass("in");
+                                        window.setTimeout(function() { $("#err-pay").alert('close'); }, 3000);
+
+                                }
+                                else{
+                                    generaBiglietto(citta, compagnia, tipo_tratta, tratta); 
+                                }
+                     
+                            
                         });
             }
         }); 
@@ -80,9 +95,9 @@ function verificaDati(){
     if(nome== "" || cognome=="" || residenza=="" || luogonas=="" || datanas=="" ){
           $("#next").removeAttr("data-toggle");
           $("#next").removeAttr("data-target");
-          $("#abb-modal").append("<div id='err-acq'class='alert alert-danger alert-dismissible fade' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato riempito</div>");
-	           $("#err-acq").addClass("in");
-                    window.setTimeout(function() { $("#err-acq").alert('close'); }, 3000); 
+          $("#abb-modal").append("<div id='err-verifica'class='alert alert-danger alert-dismissible fade mess' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato riempito</div>");
+	           $("#err-verifica").addClass("in");
+                    window.setTimeout(function() { $("#err-verifica").alert('close'); }, 3000); 
     }
     else{
          $("#next").attr("data-toggle","modal");
@@ -103,9 +118,24 @@ function verificaDati(){
                     success : function(data) {
                          $("#prezzo-bigl").empty();
                          $("#prezzo-bigl").append(data);
+                         
                         $("#pay").click(function(){
-                            generaAbbonamento(nome, cognome, datanas, residenza, luogonas, tipo_tratta, compagnia, tratta); 
-                        });
+                            var numerocarta=$("#card-number").val();
+                            var nomecarta=$("#card-holder-name").val();
+                            var mesi=$("#expiry-month  option:selected").text();
+                            var cvv=$("#cvv").val();
+                        if((numerocarta=="" || numerocarta.length <16) || (cvv=="" || cvv.length <3) || nomecarta=="" || mesi=="Month"){
+                             $("#Paymodal").append("<div id='err-pay'class='alert alert-danger alert-dismissible fade mess' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato compilato e/o lunghezza errata!</div>");
+                                       $("#err-pay").addClass("in");
+                                        window.setTimeout(function() { $("#err-pay").alert('close'); }, 3000);
+
+                                }
+                                else{
+                                      generaAbbonamento(nome, cognome, datanas, residenza, luogonas, tipo_tratta, compagnia, tratta); 
+                                }
+                         
+                            
+                            });
                     }
                 }); 
             }
@@ -157,3 +187,4 @@ function generaAbbonamento(nome, cognome, data, residenza, luogonas, tipo_tratta
        // Output as Data URI
        doc.output('datauri');
 }
+
