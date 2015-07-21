@@ -114,9 +114,15 @@
                       <div class="form-group">
                         <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+                            <select class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+                                <option value="00">---</option>
+                                <option value="01">Master Card</option>
+                                <option value="02">Visa</option>
+                                <option value="03">PostePay</option>
+                                <option value="04">American Express</option>
+                            </select>
                         </div>
-                      </div>
+                       </div>
                       
                       <div class="form-group">
                         <label class="col-sm-3 control-label" for="card-number">Card Number</label>
@@ -130,7 +136,7 @@
                           <div class="row">
                             <div class="col-xs-3">
                               <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
-                                <option>Month</option>
+                                <option value="00">Month</option>
                                 <option value="01">Jan (01)</option>
                                 <option value="02">Feb (02)</option>
                                 <option value="03">Mar (03)</option>

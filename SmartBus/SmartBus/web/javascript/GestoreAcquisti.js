@@ -53,13 +53,18 @@ function controlloChange(){
             success : function(data) {
                  $("#prezzo-bigl").empty();
                  $("#prezzo-bigl").append(data);
+                 $("#card-number").val('');
+                 $("#cvv").val('');
+                 $("#card-holder-name").val("00");
+                 $("#expiry-month").val("00");
+                 
                  $("#pay").click(function(){
-                     
-                     var numerocarta=$("#card-number").val();
-                            var nomecarta=$("#card-holder-name").val();
+                           
+                            var numerocarta=$("#card-number").val();
+                            var nomecarta=$("#card-holder-name option:selected").text();
                             var mesi=$("#expiry-month  option:selected").text();
                             var cvv=$("#cvv").val();
-                        if((numerocarta=="" || numerocarta.length <16) || (cvv=="" || cvv.length <3) || nomecarta=="" || mesi=="Month"){
+                        if((numerocarta=="" || numerocarta.length <16) || (cvv=="" || cvv.length <3) || nomecarta=="---" || mesi=="Month"){
                              $("#Paymodal").append("<div id='err-pay'class='alert alert-danger alert-dismissible fade mess' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato compilato e/o lunghezza errata!</div>");
                                        $("#err-pay").addClass("in");
                                         window.setTimeout(function() { $("#err-pay").alert('close'); }, 3000);
@@ -118,13 +123,17 @@ function verificaDati(){
                     success : function(data) {
                          $("#prezzo-bigl").empty();
                          $("#prezzo-bigl").append(data);
+                         $("#card-number").val('');
+                         $("#cvv").val('');
+                         $("#card-holder-name").val("00");
+                         $("#expiry-month").val("00");
                          
                         $("#pay").click(function(){
                             var numerocarta=$("#card-number").val();
-                            var nomecarta=$("#card-holder-name").val();
+                            var nomecarta=$("#card-holder-name option:selected").text();
                             var mesi=$("#expiry-month  option:selected").text();
                             var cvv=$("#cvv").val();
-                        if((numerocarta=="" || numerocarta.length <16) || (cvv=="" || cvv.length <3) || nomecarta=="" || mesi=="Month"){
+                        if((numerocarta=="" || numerocarta.length <16) || (cvv=="" || cvv.length <3) || nomecarta=="---" || mesi=="Month"){
                              $("#Paymodal").append("<div id='err-pay'class='alert alert-danger alert-dismissible fade mess' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Errore</strong>: qualche campo non è stato compilato e/o lunghezza errata!</div>");
                                        $("#err-pay").addClass("in");
                                         window.setTimeout(function() { $("#err-pay").alert('close'); }, 3000);

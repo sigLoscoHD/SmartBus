@@ -14,13 +14,13 @@ ServletContext context = pageContext.getServletContext();
     String citta=request.getParameter("citta");
     String compagnia=request.getParameter("compagnia");
     AbbonamentoUrbano au=DBQuery.getAbbonamentoUrbano(citta, compagnia, context);
-    out.print("Il prezzo del biglietto è di " + au.prezzo);
+    out.print("Il prezzo dell'abbonamento è di " + au.prezzo + " €");
     }
     if(tipo.equals("Extra-urbana")){
         String tratta=request.getParameter("tratta");
         String compagnia=request.getParameter("compagnia");
         AbbonamentoExtra ae=DBQuery.getAbbonamentoExtra(tratta, compagnia, context);
-        out.print("Il prezzo del biglietto è di " + ae.prezzo +  " €");
+        out.print("Il prezzo dell'abbonamento è di " + ae.prezzo +  " €");
     }
   
 
